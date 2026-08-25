@@ -12,7 +12,35 @@ export const FeaturesSection: React.FC = () => {
         </svg>
       ),
       title: 'CLIPBOARD HISTORY',
-      description: "Keep track of things you've copied across apps.",
+      description: "Keep track of text, links, and snippets you've copied across apps.",
+    },
+    {
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0066FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="4" y="2" width="16" height="20" rx="2" />
+          <line x1="8" y1="6" x2="16" y2="6" />
+          <line x1="16" y1="14" x2="16" y2="18" />
+          <path d="M16 10h.01" />
+          <path d="M12 10h.01" />
+          <path d="M8 10h.01" />
+          <path d="M12 14h.01" />
+          <path d="M8 14h.01" />
+          <path d="M12 18h.01" />
+          <path d="M8 18h.01" />
+        </svg>
+      ),
+      title: 'SMART CALCULATOR',
+      description: 'Perform instant math calculations directly inside your clipboard.',
+    },
+    {
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0066FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+          <circle cx="12" cy="13" r="4" />
+        </svg>
+      ),
+      title: 'AUTOMATIC SCREENSHOTS',
+      description: 'Capture and manage clipboard screenshots with instant visual previews.',
     },
     {
       icon: (

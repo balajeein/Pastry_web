@@ -25,6 +25,13 @@ export const Header: React.FC = () => {
 
         <nav style={styles.nav}>
           <a 
+            href="#install" 
+            onClick={(e) => scrollToSection(e, 'install')} 
+            style={styles.navLink}
+          >
+            HOW TO INSTALL
+          </a>
+          <a 
             href="#versions" 
             onClick={(e) => scrollToSection(e, 'versions')} 
             style={styles.navLink}
@@ -36,7 +43,7 @@ export const Header: React.FC = () => {
             onClick={(e) => scrollToSection(e, 'about')} 
             style={styles.navLink}
           >
-            ABOUT US
+            ABOUT
           </a>
           <a 
             href="#contact" 

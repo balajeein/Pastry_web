@@ -1,6 +1,6 @@
 import React from 'react';
 import { HeroTextSelection } from './HeroTextSelection';
-import { CONFIG } from '../config';
+import { CONFIG, LATEST_DOWNLOAD_URL } from '../config';
 
 interface HeroProps {
   onDownloadClick?: () => void;
@@ -11,10 +11,8 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick }) => {
     if (onDownloadClick) {
       onDownloadClick();
     }
-    if (CONFIG.downloadUrl) {
-      window.location.href = CONFIG.downloadUrl;
-    } else {
-      alert(`Pastry v${CONFIG.version} DMG download will start as soon as official release DMG is published.`);
+    if (LATEST_DOWNLOAD_URL) {
+      window.location.href = LATEST_DOWNLOAD_URL;
     }
   };
 
@@ -70,6 +68,23 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick }) => {
             <span style={styles.dot}>•</span>
             <span>v{CONFIG.version}</span>
           </div>
+
+          <a
+            href="#install"
+            onClick={(e) => {
+              e.preventDefault();
+              const element = document.getElementById('install');
+              if (element) {
+                const headerOffset = 80;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+              }
+            }}
+            style={styles.installGuideLink}
+          >
+            First time installing? View Installation Guide →
+          </a>
         </div>
 
       </div>
@@ -152,5 +167,13 @@ const styles: Record<string, React.CSSProperties> = {
   },
   dot: {
     opacity: 0.5,
+  },
+  installGuideLink: {
+    fontSize: '13px',
+    fontWeight: 600,
+    color: '#0066FF',
+    textDecoration: 'none',
+    marginTop: '4px',
+    transition: 'opacity 0.15s ease',
   },
 };

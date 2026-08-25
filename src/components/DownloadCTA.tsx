@@ -1,5 +1,5 @@
 import React from 'react';
-import { CONFIG } from '../config';
+import { LATEST_DOWNLOAD_URL } from '../config';
 
 interface DownloadCTAProps {
   onDownloadClick?: () => void;
@@ -10,8 +10,8 @@ export const DownloadCTA: React.FC<DownloadCTAProps> = ({ onDownloadClick }) => 
     if (onDownloadClick) {
       onDownloadClick();
     }
-    if (CONFIG.downloadUrl) {
-      window.location.href = CONFIG.downloadUrl;
+    if (LATEST_DOWNLOAD_URL) {
+      window.location.href = LATEST_DOWNLOAD_URL;
     }
   };
 
