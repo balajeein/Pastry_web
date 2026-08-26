@@ -60,7 +60,7 @@ export const InstallSection: React.FC = () => {
     },
     {
       num: '07',
-      title: "You're ready 🎉",
+      title: "You're ready",
       instructions: `Copy anything and press ${CONFIG.shortcutKey} to bring up your clipboard history. Enjoy smart calculator, automatic screenshots, and instant quick paste!`,
     },
   ];

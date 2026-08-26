@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { VERSIONS } from '../config';
 
 interface VersionsSectionProps {
@@ -6,6 +6,8 @@ interface VersionsSectionProps {
 }
 
 export const VersionsSection: React.FC<VersionsSectionProps> = ({ onDownloadClick }) => {
+  const sliderRef = useRef<HTMLDivElement>(null);
+
   const handleDownload = (downloadUrl: string) => {
     if (onDownloadClick) {
       onDownloadClick();
@@ -15,15 +17,47 @@ export const VersionsSection: React.FC<VersionsSectionProps> = ({ onDownloadClic
     }
   };
 
+  const scroll = (direction: 'left' | 'right') => {
+    if (sliderRef.current) {
+      const scrollAmount = direction === 'left' ? -340 : 340;
+      sliderRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="versions" style={styles.section} aria-label="Versions">
       <div className="container">
         <div style={styles.headerGroup}>
-          <span style={styles.sectionLabel}>RELEASE HISTORY</span>
-          <h2 style={styles.heading}>VERSIONS</h2>
+          <div>
+            <span style={styles.sectionLabel}>RELEASE HISTORY</span>
+            <h2 style={styles.heading}>VERSIONS</h2>
+          </div>
+
+          <div style={styles.scrollControls}>
+            <button
+              onClick={() => scroll('left')}
+              style={styles.scrollBtn}
+              aria-label="Scroll versions left"
+              className="scroll-btn-hover"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              style={styles.scrollBtn}
+              aria-label="Scroll versions right"
+              className="scroll-btn-hover"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
         </div>
 
-        <div style={styles.versionsList}>
+        <div ref={sliderRef} style={styles.versionsSlider} className="no-scrollbar">
           {VERSIONS.map((v) => (
             <div key={v.version} style={styles.versionCard}>
               <div>
@@ -82,7 +116,11 @@ const styles: Record<string, React.CSSProperties> = {
     borderTop: '1px solid rgba(0, 0, 0, 0.06)',
   },
   headerGroup: {
-    marginBottom: '40px',
+    marginBottom: '36px',
+    display: 'flex',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    gap: '20px',
   },
   sectionLabel: {
     fontSize: '12px',
@@ -100,11 +138,33 @@ const styles: Record<string, React.CSSProperties> = {
     color: '#111111',
     lineHeight: 1.15,
   },
-  versionsList: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+  scrollControls: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px',
+  },
+  scrollBtn: {
+    width: '40px',
+    height: '40px',
+    borderRadius: '50%',
+    backgroundColor: '#FFFFFF',
+    border: '1px solid rgba(0, 0, 0, 0.1)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#111111',
+    cursor: 'pointer',
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+  },
+  versionsSlider: {
+    display: 'flex',
     gap: '24px',
-    maxWidth: '720px',
+    overflowX: 'auto',
+    scrollSnapType: 'x mandatory',
+    paddingBottom: '16px',
+    paddingTop: '4px',
+    WebkitOverflowScrolling: 'touch',
+    scrollBehavior: 'smooth',
   },
   versionCard: {
     backgroundColor: '#FFFFFF',
@@ -115,6 +175,8 @@ const styles: Record<string, React.CSSProperties> = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    flex: '0 0 min(320px, 80vw)',
+    scrollSnapAlign: 'start',
   },
   versionHeader: {
     display: 'flex',

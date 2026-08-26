@@ -1,8 +1,17 @@
 import React from 'react';
 
+interface FeatureItem {
+  tag: string;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  isFeatured?: boolean;
+}
+
 export const FeaturesSection: React.FC = () => {
-  const features = [
+  const features: FeatureItem[] = [
     {
+      tag: 'CORE HISTORY',
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0066FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
@@ -12,9 +21,11 @@ export const FeaturesSection: React.FC = () => {
         </svg>
       ),
       title: 'CLIPBOARD HISTORY',
-      description: "Keep track of text, links, and snippets you've copied across apps.",
+      description: "Keep track of text, links, code snippets, and items you've copied across all your Mac apps.",
+      isFeatured: true,
     },
     {
+      tag: 'BUILT-IN MATH',
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0066FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <rect x="4" y="2" width="16" height="20" rx="2" />
@@ -30,9 +41,11 @@ export const FeaturesSection: React.FC = () => {
         </svg>
       ),
       title: 'SMART CALCULATOR',
-      description: 'Perform instant math calculations directly inside your clipboard.',
+      description: 'Perform instant math calculations directly inside your clipboard without opening another app.',
+      isFeatured: true,
     },
     {
+      tag: 'VISUAL MEDIA',
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0066FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
@@ -40,18 +53,20 @@ export const FeaturesSection: React.FC = () => {
         </svg>
       ),
       title: 'AUTOMATIC SCREENSHOTS',
-      description: 'Capture and manage clipboard screenshots with instant visual previews.',
+      description: 'Capture and manage clipboard screenshots with instant visual thumbnail previews.',
     },
     {
+      tag: 'GLOBAL SHORTCUT',
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0066FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
         </svg>
       ),
       title: 'INSTANT ACCESS',
-      description: 'Access your clipboard history instantly with a global keyboard shortcut.',
+      description: 'Summon your clipboard history instantly from anywhere using a global keyboard shortcut.',
     },
     {
+      tag: 'LIGHTWEIGHT',
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0066FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
@@ -60,9 +75,10 @@ export const FeaturesSection: React.FC = () => {
         </svg>
       ),
       title: 'NATIVE macOS EXPERIENCE',
-      description: 'Built specifically for macOS to live quietly in your menu bar.',
+      description: 'Built specifically for macOS to live quietly in your menu bar with minimal RAM footprint.',
     },
     {
+      tag: '100% LOCAL',
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0066FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
@@ -70,27 +86,46 @@ export const FeaturesSection: React.FC = () => {
         </svg>
       ),
       title: 'PRIVATE BY DESIGN',
-      description: 'Your clipboard data stays strictly on your Mac. No cloud, no tracking.',
+      description: 'Your clipboard data stays strictly on your Mac. No cloud servers, no analytics, no tracking.',
     },
   ];
 
   return (
     <section id="features" style={styles.section} aria-label="Features">
       <div className="container">
+        
+        {/* Section Header */}
         <div style={styles.headerGroup}>
           <span style={styles.sectionLabel}>FEATURES</span>
           <h2 style={styles.heading}>Built for speed and privacy.</h2>
+          <p style={styles.subheading}>
+            Everything you need to manage your clipboard history seamlessly on macOS without bloat.
+          </p>
         </div>
 
+        {/* Features Bento Grid */}
         <div style={styles.grid}>
           {features.map((item) => (
-            <div key={item.title} style={styles.featureCard}>
-              <div style={styles.iconWrapper}>{item.icon}</div>
-              <h3 style={styles.featureTitle}>{item.title}</h3>
-              <p style={styles.featureDesc}>{item.description}</p>
+            <div 
+              key={item.title} 
+              style={{
+                ...styles.featureCard,
+                ...(item.isFeatured ? styles.featuredCard : {}),
+              }}
+            >
+              <div style={styles.cardTopRow}>
+                <div style={styles.iconWrapper}>{item.icon}</div>
+                <span style={styles.featureTag}>{item.tag}</span>
+              </div>
+
+              <div>
+                <h3 style={styles.featureTitle}>{item.title}</h3>
+                <p style={styles.featureDesc}>{item.description}</p>
+              </div>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
@@ -103,7 +138,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
   headerGroup: {
     marginBottom: '56px',
-    textAlign: 'left',
+    maxWidth: '640px',
   },
   sectionLabel: {
     fontSize: '12px',
@@ -120,21 +155,39 @@ const styles: Record<string, React.CSSProperties> = {
     letterSpacing: '-0.025em',
     color: '#111111',
     lineHeight: 1.15,
+    marginBottom: '12px',
+  },
+  subheading: {
+    fontSize: '16px',
+    color: '#6E6E73',
+    lineHeight: 1.5,
+    fontWeight: 450,
   },
   grid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-    gap: '32px',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    gap: '24px',
   },
   featureCard: {
     backgroundColor: '#FFFFFF',
     border: '1px solid rgba(0, 0, 0, 0.08)',
-    borderRadius: '16px',
-    padding: '32px 28px',
+    borderRadius: '20px',
+    padding: '28px',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    gap: '20px',
     boxShadow: '0 2px 12px rgba(0, 0, 0, 0.02)',
+  },
+  featuredCard: {
+    border: '1px solid rgba(0, 102, 255, 0.2)',
+    backgroundColor: '#FFFFFF',
+    boxShadow: '0 4px 20px rgba(0, 102, 255, 0.04)',
+  },
+  cardTopRow: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   iconWrapper: {
     width: '44px',
@@ -144,14 +197,23 @@ const styles: Record<string, React.CSSProperties> = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: '20px',
+  },
+  featureTag: {
+    fontSize: '10px',
+    fontWeight: 800,
+    letterSpacing: '0.08em',
+    color: '#0066FF',
+    backgroundColor: 'rgba(0, 102, 255, 0.08)',
+    padding: '4px 10px',
+    borderRadius: '6px',
+    fontFamily: 'monospace',
   },
   featureTitle: {
     fontSize: '15px',
     fontWeight: 800,
-    letterSpacing: '0.04em',
+    letterSpacing: '0.03em',
     color: '#111111',
-    marginBottom: '10px',
+    marginBottom: '8px',
   },
   featureDesc: {
     fontSize: '14px',

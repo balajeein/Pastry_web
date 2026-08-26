@@ -12,9 +12,17 @@ export interface VersionItem {
 
 export const VERSIONS: VersionItem[] = [
   {
+    version: '1.1.1',
+    build: '3',
+    latest: true,
+    downloadUrl: 'https://github.com/balajeein/Pastry/releases/download/v1.1.1/Pastry.dmg',
+    notes: 'Pastry v1.1.1 release.',
+    releaseDate: '26 Aug 2026',
+  },
+  {
     version: '1.1.0',
     build: '2',
-    latest: true,
+    latest: false,
     downloadUrl: 'https://github.com/balajeein/Pastry/releases/download/v1.1.0/Pastry.dmg',
     notes: 'Pastry v1.1.0 release.',
     releaseDate: '25 Aug 2026',
@@ -29,8 +37,8 @@ export const VERSIONS: VersionItem[] = [
   },
 ];
 
-export const LATEST_VERSION = VERSIONS.find((v) => v.latest)?.version || '1.1.0';
-export const LATEST_DOWNLOAD_URL = VERSIONS.find((v) => v.latest)?.downloadUrl || 'https://github.com/balajeein/Pastry/releases/download/v1.1.0/Pastry.dmg';
+export const LATEST_VERSION = VERSIONS.find((v) => v.latest)?.version || '1.1.1';
+export const LATEST_DOWNLOAD_URL = VERSIONS.find((v) => v.latest)?.downloadUrl || 'https://github.com/balajeein/Pastry/releases/download/v1.1.1/Pastry.dmg';
 
 export const CONFIG = {
   appName: 'Pastry',
