@@ -6,7 +6,7 @@ export const Footer: React.FC = () => {
   return (
     <footer id="contact" style={styles.footer} aria-label="Footer, Contact, and Contribute">
       <div className="container" style={styles.container}>
-        
+
         {/* Contact & Community Block */}
         <div style={styles.contactGrid}>
           {/* Left Column: Community & Support */}
@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
               Found a bug, have an idea, or just want to say hi? Connect directly with the developer and community.
             </p>
 
-            <a 
+            <a
               href={CONFIG.whatsappCommunityUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -26,10 +26,10 @@ export const Footer: React.FC = () => {
               aria-label="Join Pastry WhatsApp Community"
             >
               {/* WhatsApp Icon */}
-              <svg 
-                width="20" 
-                height="20" 
-                viewBox="0 0 24 24" 
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
                 fill="currentColor"
                 aria-hidden="true"
               >
@@ -47,7 +47,7 @@ export const Footer: React.FC = () => {
               Pastry is open source. If you'd like to improve it, fix a bug, suggest a feature, or contribute code, check out the repository.
             </p>
 
-            <a 
+            <a
               href={CONFIG.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -56,10 +56,10 @@ export const Footer: React.FC = () => {
               aria-label="View Pastry GitHub Repository"
             >
               {/* GitHub Icon */}
-              <svg 
-                width="18" 
-                height="18" 
-                viewBox="0 0 24 24" 
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
                 fill="currentColor"
                 aria-hidden="true"
               >
@@ -85,10 +85,10 @@ export const Footer: React.FC = () => {
           </div>
 
           <div style={styles.linksGroup}>
-            <a 
-              href={CONFIG.githubUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href={CONFIG.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               style={styles.footerLink}
             >
               GitHub

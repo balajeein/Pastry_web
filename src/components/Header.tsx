@@ -24,30 +24,30 @@ export const Header: React.FC = () => {
         </a>
 
         <nav style={styles.nav}>
-          <a 
-            href="#install" 
-            onClick={(e) => scrollToSection(e, 'install')} 
+          <a
+            href="#install"
+            onClick={(e) => scrollToSection(e, 'install')}
             style={styles.navLink}
           >
             HOW TO INSTALL
           </a>
-          <a 
-            href="#versions" 
-            onClick={(e) => scrollToSection(e, 'versions')} 
+          <a
+            href="#versions"
+            onClick={(e) => scrollToSection(e, 'versions')}
             style={styles.navLink}
           >
             VERSIONS
           </a>
-          <a 
-            href="#about" 
-            onClick={(e) => scrollToSection(e, 'about')} 
+          <a
+            href="#about"
+            onClick={(e) => scrollToSection(e, 'about')}
             style={styles.navLink}
           >
             ABOUT
           </a>
-          <a 
-            href="#contact" 
-            onClick={(e) => scrollToSection(e, 'contact')} 
+          <a
+            href="#contact"
+            onClick={(e) => scrollToSection(e, 'contact')}
             style={styles.navLink}
           >
             CONTACT US

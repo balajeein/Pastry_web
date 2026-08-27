@@ -93,7 +93,7 @@ export const FeaturesSection: React.FC = () => {
   return (
     <section id="features" style={styles.section} aria-label="Features">
       <div className="container">
-        
+
         {/* Section Header */}
         <div style={styles.headerGroup}>
           <span style={styles.sectionLabel}>FEATURES</span>
@@ -106,8 +106,8 @@ export const FeaturesSection: React.FC = () => {
         {/* Features Bento Grid */}
         <div style={styles.grid}>
           {features.map((item) => (
-            <div 
-              key={item.title} 
+            <div
+              key={item.title}
               style={{
                 ...styles.featureCard,
                 ...(item.isFeatured ? styles.featuredCard : {}),

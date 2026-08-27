@@ -1,5 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { VERSIONS } from '../config';
+import type { VersionItem } from '../config';
+import { VersionDetailModal } from './VersionDetailModal';
 
 interface VersionsSectionProps {
   onDownloadClick?: () => void;
@@ -7,8 +9,19 @@ interface VersionsSectionProps {
 
 export const VersionsSection: React.FC<VersionsSectionProps> = ({ onDownloadClick }) => {
   const sliderRef = useRef<HTMLDivElement>(null);
+  const [selectedVersion, setSelectedVersion] = useState<VersionItem | null>(null);
 
-  const handleDownload = (downloadUrl: string) => {
+  const handleDownload = (e: React.MouseEvent, downloadUrl: string) => {
+    e.stopPropagation(); // Prevents card click from triggering modal
+    if (onDownloadClick) {
+      onDownloadClick();
+    }
+    if (downloadUrl) {
+      window.location.href = downloadUrl;
+    }
+  };
+
+  const handleModalDownload = (downloadUrl: string) => {
     if (onDownloadClick) {
       onDownloadClick();
     }
@@ -59,12 +72,29 @@ export const VersionsSection: React.FC<VersionsSectionProps> = ({ onDownloadClic
 
         <div ref={sliderRef} style={styles.versionsSlider} className="no-scrollbar">
           {VERSIONS.map((v) => (
-            <div key={v.version} style={styles.versionCard}>
+            <div
+              key={v.version}
+              style={styles.versionCard}
+              onClick={() => setSelectedVersion(v)}
+              className="version-card-interactive"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setSelectedVersion(v);
+                }
+              }}
+              aria-label={`View release details for Pastry v${v.version}`}
+            >
               <div>
                 <div style={styles.versionHeader}>
                   <div style={styles.versionTagGroup}>
                     <span style={styles.versionBadge}>v{v.version}</span>
                     {v.latest && <span style={styles.latestBadge}>LATEST</span>}
+                    {v.notRecommended && (
+                      <span style={styles.notRecommendedBadge}>NOT RECOMMENDED</span>
+                    )}
                   </div>
                   <span style={styles.buildBadge}>Build {v.build}</span>
                 </div>
@@ -77,35 +107,51 @@ export const VersionsSection: React.FC<VersionsSectionProps> = ({ onDownloadClic
                 <p style={styles.versionNotes}>{v.notes}</p>
               </div>
 
-              <div style={styles.cardFooter}>
-                <button
-                  onClick={() => handleDownload(v.downloadUrl)}
-                  style={styles.versionDownloadBtn}
-                  aria-label={`Download Pastry v${v.version}`}
-                  className="download-btn-hover"
-                >
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="7 10 12 15 17 10" />
-                    <line x1="12" y1="15" x2="12" y2="3" />
+              <div>
+                <div style={styles.detailsHintRow}>
+                  <span style={styles.detailsHintText}>Click to view release details</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="9 18 15 12 9 6" />
                   </svg>
-                  <span>DOWNLOAD</span>
-                </button>
+                </div>
+
+                <div style={styles.cardFooter}>
+                  <button
+                    onClick={(e) => handleDownload(e, v.downloadUrl)}
+                    style={styles.versionDownloadBtn}
+                    aria-label={`Download Pastry v${v.version}`}
+                    className="download-btn-hover"
+                  >
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="7 10 12 15 17 10" />
+                      <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    <span>DOWNLOAD</span>
+                  </button>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Floating Detail Modal */}
+      <VersionDetailModal
+        versionItem={selectedVersion}
+        onClose={() => setSelectedVersion(null)}
+        onDownloadClick={handleModalDownload}
+      />
     </section>
   );
 };
@@ -177,17 +223,21 @@ const styles: Record<string, React.CSSProperties> = {
     justifyContent: 'space-between',
     flex: '0 0 min(320px, 80vw)',
     scrollSnapAlign: 'start',
+    cursor: 'pointer',
+    position: 'relative',
   },
   versionHeader: {
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
     marginBottom: '12px',
+    gap: '8px',
   },
   versionTagGroup: {
     display: 'flex',
     alignItems: 'center',
-    gap: '8px',
+    gap: '6px',
+    flexWrap: 'wrap',
   },
   versionBadge: {
     fontSize: '16px',
@@ -204,10 +254,20 @@ const styles: Record<string, React.CSSProperties> = {
     padding: '4px 8px',
     borderRadius: '4px',
   },
+  notRecommendedBadge: {
+    fontSize: '10px',
+    fontWeight: 800,
+    letterSpacing: '0.08em',
+    color: '#DC2626',
+    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+    padding: '4px 8px',
+    borderRadius: '4px',
+  },
   buildBadge: {
     fontSize: '13px',
     color: '#8E8E93',
     fontWeight: 600,
+    flexShrink: 0,
   },
   releaseDateRow: {
     display: 'flex',
@@ -228,7 +288,19 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: '14px',
     color: '#6E6E73',
     lineHeight: 1.5,
-    marginBottom: '24px',
+    marginBottom: '16px',
+  },
+  detailsHintRow: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '4px',
+    fontSize: '12px',
+    fontWeight: 600,
+    color: '#0066FF',
+    marginBottom: '16px',
+  },
+  detailsHintText: {
+    letterSpacing: '-0.01em',
   },
   cardFooter: {
     display: 'flex',
@@ -250,4 +322,5 @@ const styles: Record<string, React.CSSProperties> = {
     boxShadow: '0 4px 14px rgba(0, 102, 255, 0.2)',
   },
 };
+
 

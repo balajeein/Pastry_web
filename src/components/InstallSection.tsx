@@ -68,7 +68,7 @@ export const InstallSection: React.FC = () => {
   return (
     <section id="install" style={styles.section} aria-label="Installation Guide">
       <div className="container">
-        
+
         {/* Section Header */}
         <div style={styles.headerGroup}>
           <span style={styles.sectionLabel}>SETUP & INSTALLATION</span>
@@ -81,8 +81,8 @@ export const InstallSection: React.FC = () => {
         {/* Installation Steps */}
         <div style={styles.stepsContainer}>
           {steps.map((step) => (
-            <div 
-              key={step.num} 
+            <div
+              key={step.num}
               style={{
                 ...styles.stepCard,
                 ...(step.isProminent ? styles.prominentCard : {}),
@@ -106,8 +106,8 @@ export const InstallSection: React.FC = () => {
 
               {step.image && (
                 <div style={styles.imageWrapper}>
-                  <img 
-                    src={step.image} 
+                  <img
+                    src={step.image}
                     alt={`Illustration for step ${step.num}: ${step.title}`}
                     style={styles.stepImage}
                     loading="lazy"

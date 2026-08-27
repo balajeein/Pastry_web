@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 
 // macOS native cursor SVG
 const MacCursor: React.FC<{ style?: React.CSSProperties }> = ({ style }) => (
-  <div 
+  <div
     style={{
       position: 'absolute',
       pointerEvents: 'none',
@@ -14,12 +14,12 @@ const MacCursor: React.FC<{ style?: React.CSSProperties }> = ({ style }) => (
     }}
   >
     <svg width="22" height="26" viewBox="0 0 22 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path 
-        d="M2.5 1.5V22.5L7.88281 16.5H14.5L2.5 1.5Z" 
-        fill="#000000" 
-        stroke="#FFFFFF" 
-        strokeWidth="1.8" 
-        strokeLinejoin="round" 
+      <path
+        d="M2.5 1.5V22.5L7.88281 16.5H14.5L2.5 1.5Z"
+        fill="#000000"
+        stroke="#FFFFFF"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
       />
     </svg>
   </div>
@@ -138,7 +138,7 @@ export const HeroTextSelection: React.FC = () => {
   }, []);
 
   return (
-    <div 
+    <div
       ref={containerRef}
       style={{
         position: 'relative',
@@ -149,7 +149,7 @@ export const HeroTextSelection: React.FC = () => {
       }}
     >
       {/* Animated macOS Cursor */}
-      <MacCursor 
+      <MacCursor
         style={{
           left: `${cursorPos.x}%`,
           top: `${cursorPos.y}%`,
@@ -190,10 +190,10 @@ export const HeroTextSelection: React.FC = () => {
         {/* LINE 1 */}
         <div style={{ display: 'block', whiteSpace: 'nowrap' }}>
           <span>EVERYTHING </span>
-          <span 
-            ref={line1SelectRef} 
-            style={{ 
-              position: 'relative', 
+          <span
+            ref={line1SelectRef}
+            style={{
+              position: 'relative',
               display: 'inline-block',
               padding: '0 4px',
               margin: '0 -4px',
@@ -201,7 +201,7 @@ export const HeroTextSelection: React.FC = () => {
             }}
           >
             {/* Background selection highlight */}
-            <span 
+            <span
               style={{
                 position: 'absolute',
                 top: '0',
@@ -219,12 +219,12 @@ export const HeroTextSelection: React.FC = () => {
               YOU COPY.
             </span>
             {/* Selected White Text Layer (clipped by selection width) */}
-            <span 
-              style={{ 
-                color: '#FFFFFF', 
-                position: 'absolute', 
-                top: 0, 
-                left: 0, 
+            <span
+              style={{
+                color: '#FFFFFF',
+                position: 'absolute',
+                top: 0,
+                left: 0,
                 padding: '0 4px',
                 zIndex: 2,
                 clipPath: `polygon(0 0, ${progress1 * 100}% 0, ${progress1 * 100}% 100%, 0 100%)`,
@@ -240,10 +240,10 @@ export const HeroTextSelection: React.FC = () => {
         {/* LINE 2 */}
         <div style={{ display: 'block', whiteSpace: 'nowrap', marginTop: '6px' }}>
           <span>ONE </span>
-          <span 
-            ref={line2SelectRef} 
-            style={{ 
-              position: 'relative', 
+          <span
+            ref={line2SelectRef}
+            style={{
+              position: 'relative',
               display: 'inline-block',
               padding: '0 4px',
               margin: '0 -4px',
@@ -251,7 +251,7 @@ export const HeroTextSelection: React.FC = () => {
             }}
           >
             {/* Background selection highlight */}
-            <span 
+            <span
               style={{
                 position: 'absolute',
                 top: '0',
@@ -269,12 +269,12 @@ export const HeroTextSelection: React.FC = () => {
               SHORTCUT AWAY.
             </span>
             {/* Selected White Text Layer (clipped by selection width) */}
-            <span 
-              style={{ 
-                color: '#FFFFFF', 
-                position: 'absolute', 
-                top: 0, 
-                left: 0, 
+            <span
+              style={{
+                color: '#FFFFFF',
+                position: 'absolute',
+                top: 0,
+                left: 0,
                 padding: '0 4px',
                 zIndex: 2,
                 clipPath: `polygon(0 0, ${progress2 * 100}% 0, ${progress2 * 100}% 100%, 0 100%)`,
