@@ -105,6 +105,52 @@ export const HowItWorks: React.FC = () => {
           ))}
         </div>
 
+        {/* Dedicated Shortcuts Workflow Card */}
+        <div style={styles.shortcutWorkflowCard}>
+          <div style={styles.cardHeader}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={styles.stepNum}>SHORTCUTS</span>
+              <span style={styles.subBadgePill}>NEW IN v2.0.0</span>
+            </div>
+            <span style={styles.badgePill}>⌥ + SPACE</span>
+          </div>
+
+          <div style={styles.cardVisualBox}>
+            <div style={styles.shortcutVisualFlow}>
+              <div style={styles.keyCapGroupNoMargin}>
+                <span style={styles.keyCap}>⌥</span>
+                <span style={styles.keyCapPlus}>+</span>
+                <span style={styles.keyCap}>Space</span>
+              </div>
+
+              <div style={styles.arrowIcon}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </div>
+
+              <div style={styles.shortcutOutputsGroup}>
+                <div style={styles.shortcutOutputItem}>
+                  <span style={styles.shortcutOutputDot} />
+                  <span style={styles.shortcutOutputLabel}>TEXT SHORTCUT EXPANDS</span>
+                </div>
+                <div style={{ ...styles.shortcutOutputItem, borderColor: 'rgba(0, 102, 255, 0.2)', backgroundColor: '#FFFFFF' }}>
+                  <span style={{ ...styles.shortcutOutputDot, backgroundColor: '#34C759' }} />
+                  <span style={styles.shortcutOutputLabel}>IMAGE SHORTCUT INSERTS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style={styles.cardBody}>
+            <h3 style={styles.stepTitle}>SHORTCUTS</h3>
+            <p style={styles.stepDesc}>
+              Press ⌥ + Space to instantly expand your saved text shortcut or insert your saved image wherever your cursor is.
+            </p>
+          </div>
+        </div>
+
       </div>
     </section>
   );
@@ -158,6 +204,61 @@ const styles: Record<string, React.CSSProperties> = {
     flexDirection: 'column',
     justifyContent: 'space-between',
     gap: '24px',
+  },
+  shortcutWorkflowCard: {
+    backgroundColor: '#FFFFFF',
+    border: '1px solid rgba(0, 102, 255, 0.18)',
+    borderRadius: '20px',
+    padding: '28px',
+    boxShadow: '0 4px 20px rgba(0, 102, 255, 0.04)',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    gap: '24px',
+    marginTop: '32px',
+  },
+  shortcutVisualFlow: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '16px',
+    flexWrap: 'wrap',
+    width: '100%',
+  },
+  arrowIcon: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#0066FF',
+  },
+  shortcutOutputsGroup: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '6px',
+  },
+  shortcutOutputItem: {
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    border: '1px solid rgba(0, 0, 0, 0.08)',
+    borderRadius: '8px',
+    padding: '5px 10px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    boxShadow: '0 1px 4px rgba(0, 0, 0, 0.03)',
+  },
+  shortcutOutputDot: {
+    width: '6px',
+    height: '6px',
+    borderRadius: '50%',
+    backgroundColor: '#0066FF',
+    flexShrink: 0,
+  },
+  shortcutOutputLabel: {
+    fontSize: '11px',
+    fontWeight: 800,
+    color: '#111111',
+    letterSpacing: '0.04em',
+    fontFamily: 'monospace',
   },
   cardHeader: {
     display: 'flex',
@@ -227,6 +328,11 @@ const styles: Record<string, React.CSSProperties> = {
     alignItems: 'center',
     gap: '6px',
     marginBottom: '10px',
+  },
+  keyCapGroupNoMargin: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '6px',
   },
   keyCap: {
     backgroundColor: '#FFFFFF',

@@ -25,9 +25,64 @@ export interface VersionItem {
 
 export const VERSIONS: VersionItem[] = [
   {
+    version: '2.0.0',
+    build: '1',
+    latest: true,
+    notRecommended: false,
+    downloadUrl: 'https://github.com/balajeein/Pastry/releases/download/v2.0.0/Pastry-2.0.0.dmg',
+    notes: 'Pastry v2.0.0 release — introducing Scroll Screenshot, Text Shortcuts, and Image Shortcuts.',
+    releaseDate: '2 Sep 2026',
+    tagline: 'Major release introducing scrolling screenshots, text shortcuts, and image shortcuts.',
+    sections: [
+      {
+        title: "What's New",
+        subsections: [
+          {
+            subtitle: "Scroll Screenshot",
+            items: [
+              "Capture full length webpages and long content with scrolling screenshots beyond window boundaries.",
+              "Automatically stitch scrolling content into high-resolution screenshots."
+            ]
+          },
+          {
+            subtitle: "Text Shortcuts",
+            items: [
+              "Create custom text shortcuts and expand saved text snippets instantly wherever you type.",
+              "Manage text expansions easily inside Pastry."
+            ]
+          },
+          {
+            subtitle: "Image Shortcuts",
+            items: [
+              "Create custom image shortcuts for frequently used media and graphics.",
+              "Insert saved images directly into your work with instant shortcuts."
+            ]
+          }
+        ]
+      },
+      {
+        title: "Improvements",
+        items: [
+          "Enhanced clipboard history search and paste responsiveness.",
+          "Preserved smart calculator and automatic screenshot tracking.",
+          "Full Universal 2 support for Apple Silicon and Intel Macs."
+        ]
+      },
+      {
+        title: "Compatibility",
+        keyValuePairs: [
+          { label: "Apple Silicon", value: "Yes" },
+          { label: "Intel", value: "Yes" },
+          { label: "Minimum macOS", value: "11.0" },
+          { label: "Universal 2 binary", value: "Yes" }
+        ]
+      }
+    ]
+  },
+  {
     version: '1.1.1',
     build: '3',
-    latest: true,
+    latest: false,
     notRecommended: false,
     downloadUrl: 'https://github.com/balajeein/Pastry/releases/download/v1.1.1/Pastry.dmg',
     notes: 'Pastry v1.1.1 release.',
@@ -151,8 +206,8 @@ export const VERSIONS: VersionItem[] = [
   },
 ];
 
-export const LATEST_VERSION = VERSIONS.find((v) => v.latest)?.version || '1.1.1';
-export const LATEST_DOWNLOAD_URL = VERSIONS.find((v) => v.latest)?.downloadUrl || 'https://github.com/balajeein/Pastry/releases/download/v1.1.1/Pastry.dmg';
+export const LATEST_VERSION = VERSIONS.find((v) => v.latest)?.version || '2.0.0';
+export const LATEST_DOWNLOAD_URL = VERSIONS.find((v) => v.latest)?.downloadUrl || 'https://github.com/balajeein/Pastry/releases/download/v2.0.0/Pastry-2.0.0.dmg';
 
 export const CONFIG = {
   appName: 'Pastry',

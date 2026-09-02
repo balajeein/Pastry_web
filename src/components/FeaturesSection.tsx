@@ -21,7 +21,7 @@ export const FeaturesSection: React.FC = () => {
         </svg>
       ),
       title: 'CLIPBOARD HISTORY',
-      description: "Keep track of text, links, code snippets, and items you've copied across all your Mac apps.",
+      description: "Keep track of text, links, code snippets, and items you've copied across your Mac apps.",
       isFeatured: true,
     },
     {
@@ -45,37 +45,41 @@ export const FeaturesSection: React.FC = () => {
       isFeatured: true,
     },
     {
-      tag: 'VISUAL MEDIA',
+      tag: 'FULL WEBPAGES',
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0066FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-          <circle cx="12" cy="13" r="4" />
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m10 0h3a2 2 0 0 0 2-2v-3" />
+          <line x1="12" y1="8" x2="12" y2="16" />
+          <polyline points="9 13 12 16 15 13" />
         </svg>
       ),
-      title: 'AUTOMATIC SCREENSHOTS',
-      description: 'Capture and manage clipboard screenshots with instant visual thumbnail previews.',
+      title: 'SCROLL SCREENSHOT',
+      description: "Capture entire webpages and long content with scrolling screenshots, not just what's visible on your screen.",
     },
     {
-      tag: 'GLOBAL SHORTCUT',
+      tag: 'TEXT EXPANSION',
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0066FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          <path d="M4 7V4h16v3" />
+          <line x1="12" y1="4" x2="12" y2="20" />
+          <line x1="8" y1="20" x2="16" y2="20" />
+          <path d="M17 13l3 3-3 3" />
         </svg>
       ),
-      title: 'INSTANT ACCESS',
-      description: 'Summon your clipboard history instantly from anywhere using a global keyboard shortcut.',
+      title: 'TEXT SHORTCUTS',
+      description: 'Create custom text shortcuts and expand frequently used text instantly wherever you type.',
     },
     {
-      tag: 'LIGHTWEIGHT',
+      tag: 'IMAGE SHORTCUTS',
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0066FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-          <line x1="8" y1="21" x2="16" y2="21" />
-          <line x1="12" y1="17" x2="12" y2="21" />
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+          <circle cx="8.5" cy="8.5" r="1.5" />
+          <polyline points="21 15 16 10 5 21" />
         </svg>
       ),
-      title: 'NATIVE macOS EXPERIENCE',
-      description: 'Built specifically for macOS to live quietly in your menu bar with minimal RAM footprint.',
+      title: 'IMAGE SHORTCUTS',
+      description: 'Create shortcuts for frequently used images and insert them instantly wherever you need them.',
     },
     {
       tag: '100% LOCAL',
