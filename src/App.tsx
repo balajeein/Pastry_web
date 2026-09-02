@@ -20,13 +20,13 @@ export function App() {
       <Header />
       <main style={{ flex: 1 }}>
         <Hero onDownloadClick={handleDownloadClick} />
-        <AboutSection />
         <FeaturesSection />
         <HowItWorks />
         <CompatibilitySection />
         <InstallSection />
         <VersionsSection onDownloadClick={handleDownloadClick} />
         <DownloadCTA onDownloadClick={handleDownloadClick} />
+        <AboutSection />
       </main>
       <Footer />
     </div>

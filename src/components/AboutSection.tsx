@@ -11,13 +11,12 @@ export const AboutSection: React.FC = () => {
 
         <div style={styles.contentBox}>
           <p style={styles.leadText}>
-            Pastry is a lightweight clipboard manager for macOS that keeps your recent clipboard history within reach.
+            Pastry is a lightweight macOS utility built to keep the things you use every day within reach. Save and revisit your clipboard history, calculate instantly, capture scrolling screenshots, and expand text or insert images with customizable shortcuts. All from a simple native Mac experience.
           </p>
-          <div style={styles.quoteBlock}>
-            <span>Copy something.</span>
-            <span>Keep working.</span>
-            <span>Come back to it when you need it.</span>
-          </div>
+
+          <p style={styles.privacyText}>
+            Designed with a strict local-first philosophy, your clipboard data stays entirely on your Mac. Pastry does not upload your content to cloud servers or use cloud clipboard storage, keeping your personal data lightweight, private, and strictly under your control.
+          </p>
         </div>
       </div>
     </section>
@@ -60,6 +59,12 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: '18px',
     lineHeight: 1.6,
     color: '#444444',
+    fontWeight: 450,
+  },
+  privacyText: {
+    fontSize: '16px',
+    lineHeight: 1.6,
+    color: '#6E6E73',
     fontWeight: 450,
   },
   quoteBlock: {
