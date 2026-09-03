@@ -5,6 +5,7 @@ import openAppImg from '../assets/install/install-03-open-app.png';
 import openAnywayImg from '../assets/install/install-04-open-anyway.png';
 import accessibilityImg from '../assets/install/install-05-accessibility.png';
 import menubarImg from '../assets/install/install-06-menubar.png';
+import screenRecordingImg from '../assets/install/install-07-screen-recording.png';
 
 interface Step {
   num: string;
@@ -57,11 +58,22 @@ export const InstallSection: React.FC = () => {
       instructions: 'Pastry needs Accessibility permission to paste clipboard items directly into your current app.',
       pathGuide: 'System Settings → Privacy & Security → Accessibility → Enable Pastry',
       image: accessibilityImg,
+      isProminent: true,
+      badge: 'ACTION REQUIRED',
     },
     {
       num: '07',
+      title: 'Allow Screen & System Audio Recording',
+      instructions: 'Pastry needs screen permission to capture long screenshot directly into your current app.',
+      pathGuide: 'System Settings → Privacy & Security → Screen & System Audio Recording → Enable Pastry',
+      image: screenRecordingImg,
+      isProminent: true,
+      badge: 'ACTION REQUIRED',
+    },
+    {
+      num: '08',
       title: "You're ready",
-      instructions: `Copy anything and press ${CONFIG.shortcutKey} to bring up your clipboard history. Enjoy smart calculator, automatic screenshots, and instant quick paste!`,
+      instructions: `Copy anything and press ${CONFIG.shortcutKey} to bring up your clipboard history. Enjoy smart calculator, automatic screenshots, scroll screenshots, text shortcuts, image shortcuts, and instant quick paste!`,
     },
   ];
 
