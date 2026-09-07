@@ -146,6 +146,7 @@ export const HeroTextSelection: React.FC = () => {
         textAlign: 'left',
         userSelect: 'none',
         WebkitUserSelect: 'none',
+        maxWidth: '100%',
       }}
     >
       {/* Animated macOS Cursor */}

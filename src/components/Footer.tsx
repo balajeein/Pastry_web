@@ -78,7 +78,7 @@ export const Footer: React.FC = () => {
         <div style={styles.divider} />
 
         {/* Footer Bottom Bar */}
-        <div style={styles.bottomBar}>
+        <div className="footer-bottom-bar" style={styles.bottomBar}>
           <div style={styles.brandGroup}>
             <PastryLogo size={24} showText={true} />
             <span style={styles.copyright}>© 2026 Pastry</span>
@@ -113,7 +113,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
   contactGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
     gap: '48px',
     marginBottom: '60px',
   },

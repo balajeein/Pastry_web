@@ -95,6 +95,7 @@ export const InstallSection: React.FC = () => {
           {steps.map((step) => (
             <div
               key={step.num}
+              className="install-step-card"
               style={{
                 ...styles.stepCard,
                 ...(step.isProminent ? styles.prominentCard : {}),
@@ -110,7 +111,7 @@ export const InstallSection: React.FC = () => {
                   <p style={styles.stepInstructions}>{step.instructions}</p>
                   {step.pathGuide && (
                     <div style={styles.pathBox}>
-                      <span style={styles.pathText}>{step.pathGuide}</span>
+                      <span className="install-path-text" style={styles.pathText}>{step.pathGuide}</span>
                     </div>
                   )}
                 </div>
@@ -245,6 +246,8 @@ const styles: Record<string, React.CSSProperties> = {
     fontWeight: 700,
     color: '#0066FF',
     fontFamily: 'monospace',
+    wordBreak: 'break-word',
+    overflowWrap: 'break-word',
   },
   imageWrapper: {
     width: '100%',
