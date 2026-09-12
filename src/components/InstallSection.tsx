@@ -33,7 +33,7 @@ export const InstallSection: React.FC = () => {
       badgeType: 'info',
       instructions:
         'Download the official Pastry DMG file. Double-click to mount the installer, then drag the Pastry icon directly into your Applications folder.',
-      pathGuide: 'Downloads → Pastry-2.0.0.dmg → Drag to Applications',
+      pathGuide: `Downloads → Pastry-${CONFIG.version}.dmg → Drag to Applications`,
       image: downloadImg,
       imageAlt: 'Pastry DMG installer drag to Applications window',
     },

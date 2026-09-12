@@ -25,9 +25,40 @@ export interface VersionItem {
 
 export const VERSIONS: VersionItem[] = [
   {
-    version: '2.0.0',
+    version: '2.0.1',
     build: '1',
     latest: true,
+    notRecommended: false,
+    downloadUrl: 'https://github.com/balajeein/Pastry/releases/download/v2.0.1/Pastry-2.0.1.dmg',
+    notes: 'Pastry v2.0.1 release — bug fixes, shortcut preview reliability, and stability improvements.',
+    releaseDate: '10 Sep 2026',
+    tagline: 'Bug fixes, shortcut reliability, and performance enhancements.',
+    sections: [
+      {
+        title: "Improvements",
+        items: [
+          "Fixed various bugs and stability issues.",
+          "Updated shortcut preview behavior for a more reliable and accurate preview.",
+          "Improved shortcut handling and interaction.",
+          "Updated the update checker with a temporary hardcoded update state while Apple Developer signing and notarization are unavailable.",
+          "General performance and reliability improvements."
+        ]
+      },
+      {
+        title: "Compatibility",
+        keyValuePairs: [
+          { label: "Apple Silicon", value: "Yes" },
+          { label: "Intel", value: "Yes" },
+          { label: "Minimum macOS", value: "11.0" },
+          { label: "Universal 2 binary", value: "Yes" }
+        ]
+      }
+    ]
+  },
+  {
+    version: '2.0.0',
+    build: '1',
+    latest: false,
     notRecommended: false,
     downloadUrl: 'https://github.com/balajeein/Pastry/releases/download/v2.0.0/Pastry-2.0.0.dmg',
     notes: 'Pastry v2.0.0 release — introducing Scroll Screenshot, Text Shortcuts, and Image Shortcuts.',
@@ -206,8 +237,8 @@ export const VERSIONS: VersionItem[] = [
   },
 ];
 
-export const LATEST_VERSION = VERSIONS.find((v) => v.latest)?.version || '2.0.0';
-export const LATEST_DOWNLOAD_URL = VERSIONS.find((v) => v.latest)?.downloadUrl || 'https://github.com/balajeein/Pastry/releases/download/v2.0.0/Pastry-2.0.0.dmg';
+export const LATEST_VERSION = VERSIONS.find((v) => v.latest)?.version || '2.0.1';
+export const LATEST_DOWNLOAD_URL = VERSIONS.find((v) => v.latest)?.downloadUrl || 'https://github.com/balajeein/Pastry/releases/download/v2.0.1/Pastry-2.0.1.dmg';
 
 export const CONFIG = {
   appName: 'Pastry',
