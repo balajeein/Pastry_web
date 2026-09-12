@@ -2,80 +2,77 @@ import React from 'react';
 
 export const AboutSection: React.FC = () => {
   return (
-    <section id="about" style={styles.section} aria-label="About Pastry">
-      <div className="container" style={styles.container}>
-        <div style={styles.headerGroup}>
-          <span style={styles.sectionLabel}>ABOUT PASTRY</span>
-          <h2 style={styles.heading}>Designed to stay out of your way until you need it.</h2>
+    <section
+      id="about"
+      style={{
+        padding: '120px 0',
+        backgroundColor: '#FFFFFF',
+        borderTop: '1px solid rgba(0, 0, 0, 0.05)',
+      }}
+      aria-label="About Pastry"
+    >
+      <div className="container-narrow">
+        <div style={{ marginBottom: '32px' }}>
+          <span className="section-eyebrow">ABOUT PASTRY</span>
+          <h2
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(38px, 5.5vw, 64px)',
+              fontWeight: 800,
+              lineHeight: 1.05,
+              letterSpacing: '-0.035em',
+              color: '#111111',
+            }}
+          >
+            Everything you need.
+            <br />
+            Nothing you don't.
+          </h2>
         </div>
 
-        <div style={styles.contentBox}>
-          <p style={styles.leadText}>
-            Pastry is a lightweight macOS utility built to keep the things you use every day within reach. Save and revisit your clipboard history, calculate instantly, capture scrolling screenshots, and expand text or insert images with customizable shortcuts. All from a simple native Mac experience.
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '19px',
+              lineHeight: 1.6,
+              color: '#444446',
+              fontWeight: 450,
+            }}
+          >
+            Pastry is a lightweight macOS utility built to keep the things you use every day within reach. Save and
+            revisit your clipboard history, calculate instantly, capture scrolling screenshots, and expand text or
+            images with customizable shortcuts — all from a simple native Mac experience.
           </p>
 
-          <p style={styles.privacyText}>
-            Designed with a strict local-first philosophy, your clipboard data stays entirely on your Mac. Pastry does not upload your content to cloud servers or use cloud clipboard storage, keeping your personal data lightweight, private, and strictly under your control.
-          </p>
+          <div
+            style={{
+              paddingLeft: '24px',
+              borderLeft: '2.5px solid var(--accent-blue)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '6px',
+            }}
+          >
+            <div
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(19px, 2.5vw, 24px)',
+                fontWeight: 700,
+                color: '#111111',
+                lineHeight: 1.35,
+                letterSpacing: '-0.02em',
+              }}
+            >
+              Copy something.
+              <br />
+              Create something.
+              <br />
+              Get it done without breaking your flow.
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
-};
-
-const styles: Record<string, React.CSSProperties> = {
-  section: {
-    padding: '100px 0',
-    borderTop: '1px solid rgba(0, 0, 0, 0.06)',
-  },
-  container: {
-    maxWidth: '780px',
-  },
-  headerGroup: {
-    marginBottom: '32px',
-  },
-  sectionLabel: {
-    fontSize: '12px',
-    fontWeight: 800,
-    letterSpacing: '0.12em',
-    color: '#0066FF',
-    textTransform: 'uppercase',
-    display: 'block',
-    marginBottom: '12px',
-  },
-  heading: {
-    fontSize: 'clamp(28px, 4vw, 42px)',
-    fontWeight: 800,
-    letterSpacing: '-0.025em',
-    color: '#111111',
-    lineHeight: 1.15,
-  },
-  contentBox: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '24px',
-  },
-  leadText: {
-    fontSize: '18px',
-    lineHeight: 1.6,
-    color: '#444444',
-    fontWeight: 450,
-  },
-  privacyText: {
-    fontSize: '16px',
-    lineHeight: 1.6,
-    color: '#6E6E73',
-    fontWeight: 450,
-  },
-  quoteBlock: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '6px',
-    fontSize: '17px',
-    fontWeight: 600,
-    color: '#111111',
-    paddingLeft: '20px',
-    borderLeft: '2px solid #0066FF',
-    marginTop: '8px',
-  },
 };

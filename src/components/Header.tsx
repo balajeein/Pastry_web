@@ -1,206 +1,292 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PastryLogo } from './PastryLogo';
+import { CONFIG, LATEST_DOWNLOAD_URL } from '../config';
 
-export const Header: React.FC = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-  const headerRef = useRef<HTMLElement>(null);
+interface HeaderProps {
+  onDownloadClick?: () => void;
+}
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+export const Header: React.FC<HeaderProps> = ({ onDownloadClick }) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
-    setIsMobileMenuOpen(false);
+    setIsMobileOpen(false);
     const element = document.getElementById(id);
     if (element) {
-      const headerOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      const navOffset = 80;
+      const top = element.getBoundingClientRect().top + window.pageYOffset - navOffset;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
   };
 
-  // Close menu on Escape key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setIsMobileMenuOpen(false);
-      }
-    };
-    if (isMobileMenuOpen) {
-      window.addEventListener('keydown', handleKeyDown);
-    }
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isMobileMenuOpen]);
-
-  // Close menu on window resize > 768px
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 768) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const navLinks = [
-    { label: 'HOW TO INSTALL', id: 'install' },
-    { label: 'VERSIONS', id: 'versions' },
-    { label: 'ABOUT', id: 'about' },
-    { label: 'CONTACT US', id: 'contact' },
-  ];
+  const handleDownload = () => {
+    if (onDownloadClick) onDownloadClick();
+    if (LATEST_DOWNLOAD_URL) window.location.href = LATEST_DOWNLOAD_URL;
+  };
 
   return (
-    <header ref={headerRef} style={styles.header}>
-      <div className="header-nav-container" style={styles.navContainer}>
-        <a href="#" style={styles.logoLink} aria-label="Pastry Home" onClick={(e) => scrollToSection(e, 'root')}>
-          <PastryLogo size={28} showText={true} />
+    <header
+      style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 100,
+        width: '100%',
+        padding: isScrolled ? '12px 24px' : '18px 24px',
+        transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+      }}
+    >
+      <div
+        style={{
+          maxWidth: '1040px',
+          margin: '0 auto',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          background: isScrolled ? 'rgba(255, 255, 255, 0.82)' : 'rgba(255, 255, 255, 0.65)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          padding: '8px 14px 8px 18px',
+          borderRadius: '999px',
+          border: '1px solid rgba(0, 0, 0, 0.07)',
+          boxShadow: isScrolled
+            ? '0 12px 30px -8px rgba(0, 0, 0, 0.08), 0 0 1px 1px rgba(0, 0, 0, 0.04)'
+            : '0 4px 20px -4px rgba(0, 0, 0, 0.04)',
+          transition: 'all 0.25s ease',
+        }}
+      >
+        {/* Left: Pastry Logo + "Pastry" */}
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '10px',
+            textDecoration: 'none',
+          }}
+          aria-label="Pastry Home"
+        >
+          <PastryLogo size={26} showText={true} />
         </a>
 
-        {/* Desktop Navigation */}
-        <nav className="desktop-nav" style={styles.nav} aria-label="Primary navigation">
-          {navLinks.map((link) => (
-            <a
-              key={link.id}
-              href={`#${link.id}`}
-              onClick={(e) => scrollToSection(e, link.id)}
-              style={styles.navLink}
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        {/* Mobile Hamburger Button */}
-        <button
-          className="mobile-menu-btn"
-          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-          aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-          aria-expanded={isMobileMenuOpen}
-          type="button"
+        {/* Right: Desktop Navigation */}
+        <nav
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '24px',
+          }}
+          className="desktop-nav-group"
         >
-          {isMobileMenuOpen ? (
+          <a
+            href="#features"
+            onClick={(e) => scrollTo(e, 'features')}
+            style={styles.navLink}
+          >
+            Features
+          </a>
+          <a
+            href="#install"
+            onClick={(e) => scrollTo(e, 'install')}
+            style={styles.navLink}
+          >
+            How to Install
+          </a>
+          <a
+            href="#about"
+            onClick={(e) => scrollTo(e, 'about')}
+            style={styles.navLink}
+          >
+            About
+          </a>
+          <a
+            href={CONFIG.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.navLink}
+          >
+            GitHub
+          </a>
+
+          {/* Primary CTA: Download */}
+          <button
+            onClick={handleDownload}
+            style={{
+              backgroundColor: '#111111',
+              color: '#FFFFFF',
+              fontFamily: 'var(--font-display)',
+              fontSize: '13.5px',
+              fontWeight: 700,
+              letterSpacing: '-0.01em',
+              padding: '8px 18px',
+              borderRadius: '999px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              transition: 'all 0.15s ease',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12)',
+            }}
+            className="header-download-btn"
+          >
             <svg
-              width="22"
-              height="22"
+              width="13"
+              height="13"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="#111111"
-              strokeWidth="2.2"
+              stroke="currentColor"
+              strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
               aria-hidden="true"
             >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            <span>Download</span>
+          </button>
+        </nav>
+
+        {/* Mobile Hamburger toggle */}
+        <button
+          onClick={() => setIsMobileOpen(!isMobileOpen)}
+          className="mobile-nav-toggle"
+          aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
+          style={{
+            display: 'none',
+            padding: '6px',
+            borderRadius: '8px',
+            color: '#111111',
+          }}
+        >
+          {isMobileOpen ? (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
               <line x1="18" y1="6" x2="6" y2="18" />
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           ) : (
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#111111"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="18" x2="21" y2="18" />
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+              <line x1="3" y1="7" x2="21" y2="7" />
+              <line x1="3" y1="17" x2="21" y2="17" />
             </svg>
           )}
         </button>
       </div>
 
-      {/* Mobile Drawer Navigation Menu */}
-      {isMobileMenuOpen && (
-        <>
-          <div
-            className="mobile-menu-backdrop"
-            onClick={() => setIsMobileMenuOpen(false)}
-            aria-hidden="true"
-          />
-          <nav className="mobile-drawer-menu" aria-label="Mobile navigation">
-            <div className="mobile-drawer-links">
-              {navLinks.map((link) => (
-                <a
-                  key={link.id}
-                  href={`#${link.id}`}
-                  onClick={(e) => scrollToSection(e, link.id)}
-                  className="mobile-nav-link"
-                >
-                  <span>{link.label}</span>
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <polyline points="9 18 15 12 9 6" />
-                  </svg>
-                </a>
-              ))}
-            </div>
-          </nav>
-        </>
+      {/* Mobile Drawer Dropdown */}
+      {isMobileOpen && (
+        <div
+          style={{
+            maxWidth: '1040px',
+            margin: '8px auto 0',
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(24px)',
+            WebkitBackdropFilter: 'blur(24px)',
+            borderRadius: '20px',
+            border: '1px solid rgba(0, 0, 0, 0.08)',
+            padding: '16px',
+            boxShadow: '0 16px 36px rgba(0, 0, 0, 0.1)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '8px',
+          }}
+        >
+          <a
+            href="#features"
+            onClick={(e) => scrollTo(e, 'features')}
+            style={styles.mobileLink}
+          >
+            Features
+          </a>
+          <a
+            href="#install"
+            onClick={(e) => scrollTo(e, 'install')}
+            style={styles.mobileLink}
+          >
+            How to Install
+          </a>
+          <a
+            href="#about"
+            onClick={(e) => scrollTo(e, 'about')}
+            style={styles.mobileLink}
+          >
+            About
+          </a>
+          <a
+            href={CONFIG.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.mobileLink}
+          >
+            GitHub
+          </a>
+          <button
+            onClick={handleDownload}
+            style={{
+              backgroundColor: '#111111',
+              color: '#FFFFFF',
+              fontFamily: 'var(--font-display)',
+              fontSize: '14px',
+              fontWeight: 700,
+              padding: '12px',
+              borderRadius: '12px',
+              textAlign: 'center',
+              marginTop: '6px',
+            }}
+          >
+            Download Pastry
+          </button>
+        </div>
       )}
+
+      <style>{`
+        @media (max-width: 768px) {
+          .desktop-nav-group {
+            display: none !important;
+          }
+          .mobile-nav-toggle {
+            display: flex !important;
+          }
+        }
+        .header-download-btn:hover {
+          transform: translateY(-1px);
+          background-color: #000000 !important;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+        }
+      `}</style>
     </header>
   );
 };
 
 const styles: Record<string, React.CSSProperties> = {
-  header: {
-    position: 'sticky',
-    top: 0,
-    zIndex: 100,
-    backgroundColor: 'rgba(250, 249, 246, 0.85)',
-    backdropFilter: 'blur(12px)',
-    WebkitBackdropFilter: 'blur(12px)',
-    borderBottom: '1px solid rgba(0, 0, 0, 0.05)',
-    height: '64px',
-    display: 'flex',
-    alignItems: 'center',
-    width: '100%',
-  },
-  navContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
-    padding: '0 40px',
-  },
-  logoLink: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    textDecoration: 'none',
-  },
-  nav: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '28px',
-  },
   navLink: {
-    fontSize: '12px',
-    fontWeight: 700,
-    letterSpacing: '0.08em',
-    color: '#111111',
-    textDecoration: 'none',
+    fontFamily: 'var(--font-display)',
+    fontSize: '13.5px',
+    fontWeight: 600,
+    color: '#3A3A3C',
+    letterSpacing: '-0.01em',
     transition: 'color 0.15s ease',
-    opacity: 0.85,
     cursor: 'pointer',
   },
+  mobileLink: {
+    fontFamily: 'var(--font-display)',
+    fontSize: '15px',
+    fontWeight: 600,
+    color: '#121214',
+    padding: '10px 14px',
+    borderRadius: '10px',
+  },
 };
-
