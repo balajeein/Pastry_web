@@ -4,9 +4,10 @@ import { CONFIG, LATEST_DOWNLOAD_URL } from '../config';
 
 interface HeaderProps {
   onDownloadClick?: () => void;
+  onAboutClick?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onDownloadClick }) => {
+export const Header: React.FC<HeaderProps> = ({ onDownloadClick, onAboutClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -105,13 +106,19 @@ export const Header: React.FC<HeaderProps> = ({ onDownloadClick }) => {
           >
             How to Install
           </a>
-          <a
-            href="#about"
-            onClick={(e) => scrollTo(e, 'about')}
-            style={styles.navLink}
+          <button
+            type="button"
+            onClick={onAboutClick}
+            style={{
+              ...styles.navLink,
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer',
+            }}
           >
             About
-          </a>
+          </button>
           <a
             href={CONFIG.githubUrl}
             target="_blank"
@@ -218,13 +225,24 @@ export const Header: React.FC<HeaderProps> = ({ onDownloadClick }) => {
           >
             How to Install
           </a>
-          <a
-            href="#about"
-            onClick={(e) => scrollTo(e, 'about')}
-            style={styles.mobileLink}
+          <button
+            type="button"
+            onClick={() => {
+              setIsMobileOpen(false);
+              if (onAboutClick) onAboutClick();
+            }}
+            style={{
+              ...styles.mobileLink,
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              textAlign: 'left',
+              width: '100%',
+              padding: '10px 14px',
+            }}
           >
             About
-          </a>
+          </button>
           <a
             href={CONFIG.githubUrl}
             target="_blank"

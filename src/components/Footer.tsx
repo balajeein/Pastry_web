@@ -3,7 +3,11 @@ import { PastryLogo } from './PastryLogo';
 import { CONFIG, LATEST_DOWNLOAD_URL } from '../config';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onAboutClick?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onAboutClick }) => {
   const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const element = document.getElementById(id);
@@ -90,13 +94,19 @@ export const Footer: React.FC = () => {
           >
             Install Guide
           </a>
-          <a
-            href="#about"
-            onClick={(e) => scrollTo(e, 'about')}
-            style={styles.link}
+          <button
+            type="button"
+            onClick={onAboutClick}
+            style={{
+              ...styles.link,
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer',
+            }}
           >
             About
-          </a>
+          </button>
           <a
             href="#privacy"
             onClick={(e) => scrollTo(e, 'privacy')}

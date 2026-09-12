@@ -6,6 +6,7 @@ import openAppImg from '../assets/install/install-03-open-app.png';
 import openAnywayImg from '../assets/install/install-04-open-anyway.png';
 import accessibilityImg from '../assets/install/install-05-accessibility.png';
 import screenRecordingImg from '../assets/install/install-07-screen-recording.png';
+import dragAppImg from '../assets/install/install-drag-applications.png';
 import menubarImg from '../assets/install/install-06-menubar.png';
 
 interface InstallStep {
@@ -27,15 +28,15 @@ export const InstallSection: React.FC = () => {
   const steps: InstallStep[] = [
     {
       step: '01',
-      tabLabel: 'Download & Drag',
-      title: 'Download & Drag to Applications',
-      badge: 'Step 1 of 6',
+      tabLabel: 'Download DMG',
+      title: 'Download Pastry DMG',
+      badge: 'Step 1 of 7',
       badgeType: 'info',
       instructions:
-        'Download the official Pastry DMG file. Double-click to mount the installer, then drag the Pastry icon directly into your Applications folder.',
-      pathGuide: `Downloads → Pastry-${CONFIG.version}.dmg → Drag to Applications`,
+        'Download the official Pastry DMG file from the website directly to your Mac Downloads folder.',
+      pathGuide: `Downloads → Pastry-${CONFIG.version}.dmg`,
       image: downloadImg,
-      imageAlt: 'Pastry DMG installer drag to Applications window',
+      imageAlt: 'Pastry DMG download on official website',
     },
     {
       step: '02',
@@ -91,6 +92,19 @@ export const InstallSection: React.FC = () => {
     },
     {
       step: '06',
+      tabLabel: 'Drag to Apps',
+      title: 'Drag Pastry into Applications',
+      badge: 'Required install',
+      badgeType: 'required',
+      instructions:
+        'You have to drag the app into your Applications folder. Open the mounted Pastry disk image installer and drag the Pastry icon directly onto the Applications folder shortcut to finish installing.',
+      devNote: 'Moving Pastry into Applications ensures the app remains permanently installed and launches reliably.',
+      pathGuide: 'Pastry Disk Image → Drag Pastry.app into Applications',
+      image: dragAppImg,
+      imageAlt: 'Pastry DMG installer drag to Applications window',
+    },
+    {
+      step: '07',
       tabLabel: 'Ready in Menu Bar',
       title: 'Ready in Menu Bar — Press ⌘ + Shift + V',
       badge: 'You’re all set!',
@@ -120,7 +134,7 @@ export const InstallSection: React.FC = () => {
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
           <span className="section-eyebrow">SETUP GUIDE</span>
           <h2 className="section-title">
-            6 quick steps.
+            7 quick steps.
             <br />
             Up and running in 60 seconds.
           </h2>
@@ -168,11 +182,11 @@ export const InstallSection: React.FC = () => {
             >
               <strong style={{ color: '#111111' }}>Built by an independent Mac developer:</strong> Because Pastry is
               distributed independently outside the Mac App Store, macOS Gatekeeper requires a one-time approval on
-              first launch. Follow this 6-step process to get started smoothly.
+              first launch. Follow this 7-step process to get started smoothly.
             </p>
           </div>
 
-          {/* 6-Step Pill Switcher */}
+          {/* 7-Step Pill Switcher */}
           <div
             style={{
               display: 'flex',
@@ -255,7 +269,7 @@ export const InstallSection: React.FC = () => {
                   letterSpacing: '0.04em',
                 }}
               >
-                STEP {currentStep.step} OF 06
+                STEP {currentStep.step} OF {String(steps.length).padStart(2, '0')}
               </span>
 
               <span
