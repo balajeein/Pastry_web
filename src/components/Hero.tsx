@@ -10,6 +10,30 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick }) => {
   const [animStep, setAnimStep] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
+  // Live macOS menu bar day and time (e.g., "Sat 11:19 AM")
+  const [liveMenuTime, setLiveMenuTime] = useState<string>(() => {
+    const now = new Date();
+    return (
+      now.toLocaleDateString('en-US', { weekday: 'short' }) +
+      ' ' +
+      now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })
+    );
+  });
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setLiveMenuTime(
+        now.toLocaleDateString('en-US', { weekday: 'short' }) +
+          ' ' +
+          now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })
+      );
+    };
+    updateTime();
+    const timer = setInterval(updateTime, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   const handleDownload = () => {
     if (onDownloadClick) onDownloadClick();
     if (LATEST_DOWNLOAD_URL) window.location.href = LATEST_DOWNLOAD_URL;
@@ -385,7 +409,7 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick }) => {
                   <img src="/pastry-logo.png" alt="Pastry Icon" style={{ width: '13px', height: '13px' }} />
                   <span style={{ fontSize: '11px', fontWeight: 700 }}>Pastry Active</span>
                 </div>
-                <span>Wed 5:06 PM</span>
+                <span>{liveMenuTime}</span>
               </div>
             </div>
 
