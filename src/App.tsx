@@ -5,6 +5,7 @@ import { ClipboardHistorySection } from './components/ClipboardHistorySection';
 import { SmartCalculatorSection } from './components/SmartCalculatorSection';
 import { ScrollScreenshotSection } from './components/ScrollScreenshotSection';
 import { ShortcutsSection } from './components/ShortcutsSection';
+import { BrowserSearchSection } from './components/BrowserSearchSection';
 import { PrivacySection } from './components/PrivacySection';
 import { InstallSection } from './components/InstallSection';
 import { FinalCTASection } from './components/FinalCTASection';
@@ -43,7 +44,10 @@ export function App() {
         {/* 7. Text + Image Shortcuts */}
         <ShortcutsSection />
 
-        {/* 8. Privacy (Local-First Architecture) */}
+        {/* 8. Browser Search (Instant Default Browser Lookup) */}
+        <BrowserSearchSection />
+
+        {/* 9. Privacy (Local-First Architecture) */}
         <PrivacySection />
 
         {/* 9. How to Install (60-second macOS Guide) */}

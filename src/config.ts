@@ -25,9 +25,56 @@ export interface VersionItem {
 
 export const VERSIONS: VersionItem[] = [
   {
-    version: '2.0.1',
+    version: '2.1.0',
     build: '1',
     latest: true,
+    notRecommended: false,
+    downloadUrl: 'https://github.com/balajeein/Pastry/releases/download/v2.1.0/Pastry-2.1.0.dmg',
+    notes: 'Pastry v2.1.0 release — introducing Browser Search (⌘ ⇧ B), Scroll Screenshot shortcut (⌘ ⇧ G), and performance improvements.',
+    releaseDate: '22 Sep 2026',
+    tagline: 'Browser Search, Scroll Screenshot shortcut, and stability improvements.',
+    sections: [
+      {
+        title: "What's New",
+        subsections: [
+          {
+            subtitle: "Browser Search",
+            items: [
+              "Select anything → press ⌘ ⇧ B → send it directly to your default browser.",
+              "Pastry passes selected text directly to your default browser, which handles whether the content is a URL or a search query."
+            ]
+          },
+          {
+            subtitle: "Scroll Screenshot Shortcut",
+            items: [
+              "Added dedicated keyboard shortcut (⌘ ⇧ G) for instant scrolling screenshots."
+            ]
+          }
+        ]
+      },
+      {
+        title: "Improvements",
+        items: [
+          "Fixed various bugs and stability issues.",
+          "Enhanced shortcut reliability and response time.",
+          "Universal 2 binary support for Apple Silicon and Intel Macs."
+        ]
+      },
+      {
+        title: "Compatibility",
+        keyValuePairs: [
+          { label: "Apple Silicon", value: "Yes" },
+          { label: "Intel", value: "Yes" },
+          { label: "Minimum macOS", value: "11.0" },
+          { label: "Universal 2 binary", value: "Yes" }
+        ]
+      }
+    ]
+  },
+  {
+    version: '2.0.1',
+    build: '1',
+    latest: false,
     notRecommended: false,
     downloadUrl: 'https://github.com/balajeein/Pastry/releases/download/v2.0.1/Pastry-2.0.1.dmg',
     notes: 'Pastry v2.0.1 release — bug fixes, shortcut preview reliability, and stability improvements.',
@@ -237,8 +284,8 @@ export const VERSIONS: VersionItem[] = [
   },
 ];
 
-export const LATEST_VERSION = VERSIONS.find((v) => v.latest)?.version || '2.0.1';
-export const LATEST_DOWNLOAD_URL = VERSIONS.find((v) => v.latest)?.downloadUrl || 'https://github.com/balajeein/Pastry/releases/download/v2.0.1/Pastry-2.0.1.dmg';
+export const LATEST_VERSION = VERSIONS.find((v) => v.latest)?.version || '2.1.0';
+export const LATEST_DOWNLOAD_URL = VERSIONS.find((v) => v.latest)?.downloadUrl || 'https://github.com/balajeein/Pastry/releases/download/v2.1.0/Pastry-2.1.0.dmg';
 
 export const CONFIG = {
   appName: 'Pastry',

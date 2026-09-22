@@ -578,7 +578,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({
                   Integrated Power Suite
                 </h3>
                 <p style={{ fontSize: '13px', lineHeight: 1.5, color: '#636366', margin: 0 }}>
-                  Inline math solver, full-page scrolling screenshots, and instantaneous keyword expansions right where your cursor rests.
+                  Inline math solver, full-page scrolling screenshots, browser search, and instantaneous keyword expansions right where your cursor rests.
                 </p>
               </div>
             </div>
@@ -607,23 +607,23 @@ export const AboutModal: React.FC<AboutModalProps> = ({
             <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span className="mac-keycap" style={{ height: '26px', minWidth: '26px', fontSize: '12px', padding: '0 8px' }}>
-                  ⌘ + Shift + V
+                  ⌘ ⇧ V
                 </span>
-                <span style={{ fontSize: '12px', color: '#636366' }}>Clipboard History</span>
+                <span style={{ fontSize: '12px', color: '#636366' }}>Open Clipboard</span>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span className="mac-keycap" style={{ height: '26px', minWidth: '26px', fontSize: '12px', padding: '0 8px' }}>
-                  ⌥ + Space
+                  ⌘ ⇧ B
                 </span>
-                <span style={{ fontSize: '12px', color: '#636366' }}>Expand Shortcut</span>
+                <span style={{ fontSize: '12px', color: '#636366' }}>Browser Search</span>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span className="mac-keycap" style={{ height: '26px', minWidth: '26px', fontSize: '12px', padding: '0 8px' }}>
-                  Esc
+                  ⌘ ⇧ G
                 </span>
-                <span style={{ fontSize: '12px', color: '#636366' }}>Dismiss</span>
+                <span style={{ fontSize: '12px', color: '#636366' }}>Scroll Screenshot</span>
               </div>
             </div>
           </div>

@@ -508,7 +508,7 @@ export const PastryWindowMockup: React.FC<PastryWindowMockupProps> = ({
         >
           {/* Scroll Screenshot Button */}
           <button
-            title="Scroll Screenshot (⌘⇧S)"
+            title="Scroll Screenshot (⌘⇧G)"
             style={{
               width: '38px',
               height: '38px',

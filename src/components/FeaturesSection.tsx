@@ -3,6 +3,7 @@ import React from 'react';
 interface FeatureItem {
   tag: string;
   title: string;
+  shortcut?: string;
   description: string;
   icon: React.ReactNode;
   isFeatured?: boolean;
@@ -21,6 +22,7 @@ export const FeaturesSection: React.FC = () => {
         </svg>
       ),
       title: 'CLIPBOARD HISTORY',
+      shortcut: '⌘ ⇧ V',
       description: "Keep track of text, links, code snippets, and items you've copied across your Mac apps.",
       isFeatured: true,
     },
@@ -54,6 +56,7 @@ export const FeaturesSection: React.FC = () => {
         </svg>
       ),
       title: 'SCROLL SCREENSHOT',
+      shortcut: '⌘ ⇧ G',
       description: "Capture entire webpages and long content with scrolling screenshots, not just what's visible on your screen.",
     },
     {
@@ -80,6 +83,19 @@ export const FeaturesSection: React.FC = () => {
       ),
       title: 'IMAGE SHORTCUTS',
       description: 'Create shortcuts for frequently used images and insert them instantly wherever you need them.',
+    },
+    {
+      tag: 'DEFAULT BROWSER',
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0066FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="2" y1="12" x2="22" y2="12" />
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+        </svg>
+      ),
+      title: 'BROWSER SEARCH',
+      shortcut: '⌘ ⇧ B',
+      description: 'Select anything → press ⌘ ⇧ B → send it directly to your default browser.',
     },
     {
       tag: '100% LOCAL',
@@ -123,7 +139,12 @@ export const FeaturesSection: React.FC = () => {
               </div>
 
               <div>
-                <h3 style={styles.featureTitle}>{item.title}</h3>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px', flexWrap: 'wrap', gap: '6px' }}>
+                  <h3 style={{ ...styles.featureTitle, marginBottom: 0 }}>{item.title}</h3>
+                  {item.shortcut && (
+                    <span style={styles.featureShortcut}>{item.shortcut}</span>
+                  )}
+                </div>
                 <p style={styles.featureDesc}>{item.description}</p>
               </div>
             </div>
@@ -218,6 +239,16 @@ const styles: Record<string, React.CSSProperties> = {
     letterSpacing: '0.03em',
     color: '#111111',
     marginBottom: '8px',
+  },
+  featureShortcut: {
+    fontSize: '11px',
+    fontWeight: 700,
+    fontFamily: 'monospace',
+    color: '#111111',
+    backgroundColor: '#F5F5F7',
+    border: '1px solid rgba(0, 0, 0, 0.08)',
+    padding: '2px 7px',
+    borderRadius: '5px',
   },
   featureDesc: {
     fontSize: '14px',

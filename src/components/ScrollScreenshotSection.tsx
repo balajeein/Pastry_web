@@ -29,10 +29,16 @@ export const ScrollScreenshotSection: React.FC = () => {
             <br />
             One screenshot.
           </h2>
-          <p className="section-subtitle" style={{ margin: '0 auto', maxWidth: '640px' }}>
+          <p className="section-subtitle" style={{ margin: '0 auto 16px', maxWidth: '640px' }}>
             Capture deep source code files and functions far beyond the physical boundaries of your display.
             Automatically scrolled and stitched into a single flawless image.
           </p>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+            <span style={{ fontSize: '12px', fontWeight: 600, color: '#8E8E93', marginRight: '4px' }}>Shortcut:</span>
+            <span className="mac-keycap" style={{ height: '24px', minWidth: '24px', fontSize: '11px', padding: '0 6px' }}>⌘</span>
+            <span className="mac-keycap" style={{ height: '24px', minWidth: '24px', fontSize: '11px', padding: '0 6px' }}>⇧</span>
+            <span className="mac-keycap" style={{ height: '24px', minWidth: '24px', fontSize: '11px', padding: '0 6px' }}>G</span>
+          </div>
         </div>
 
         {/* Large Visual Showcase Canvas */}
@@ -212,7 +218,7 @@ export const ScrollScreenshotSection: React.FC = () => {
                   <div style={{ paddingLeft: '20px' }}>&#125;</div>
                   <div>&#125;</div>
                   <br />
-                  <div style={{ color: '#6A737D', fontStyle: 'italic' }}>// Global Keyboard Shortcut Listener (⌘ + Shift + S)</div>
+                  <div style={{ color: '#6A737D', fontStyle: 'italic' }}>// Global Keyboard Shortcut Listener (⌘ + Shift + G)</div>
                   <div><span style={{ color: '#D73A49', fontWeight: 600 }}>extension</span> <span style={{ color: '#005CC5', fontWeight: 600 }}>ScrollCaptureWindow</span> &#123;</div>
                   <div style={{ paddingLeft: '20px' }}><span style={{ color: '#D73A49', fontWeight: 600 }}>func</span> <span style={{ color: '#6F42C1', fontWeight: 600 }}>handleGlobalHotkeyTrigger</span>() &#123;</div>
                   <div style={{ paddingLeft: '40px' }}>startSmoothAutoScrollCapture(target: .activeWindow)</div>

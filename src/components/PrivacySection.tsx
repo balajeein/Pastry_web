@@ -12,7 +12,7 @@ export const PrivacySection: React.FC = () => {
       aria-label="Privacy"
     >
       <div className="container-narrow" style={{ textAlign: 'center' }}>
-        <span className="section-eyebrow">06 — PRIVACY BY DESIGN</span>
+        <span className="section-eyebrow">07 — PRIVACY BY DESIGN</span>
         <h2 className="section-title" style={{ marginBottom: '24px' }}>
           Your clipboard stays yours.
         </h2>
