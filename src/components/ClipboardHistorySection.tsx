@@ -57,12 +57,24 @@ export const ClipboardHistorySection: React.FC = () => {
       id="features"
       style={{
         padding: '120px 0',
-        backgroundColor: '#FFFFFF',
-        borderTop: '1px solid rgba(0, 0, 0, 0.05)',
+        backgroundColor: 'var(--pastry-paper)',
+        borderTop: '1px solid var(--pastry-hairline)',
+        position: 'relative',
+        overflow: 'hidden',
       }}
       aria-label="Clipboard History"
     >
-      <div className="container">
+      {/* Ambient Refractive Blooms */}
+      <div
+        className="pastry-bloom pastry-bloom-meadow"
+        style={{ width: '440px', height: '440px', top: '15%', right: '-5%' }}
+      />
+      <div
+        className="pastry-bloom pastry-bloom-aurora"
+        style={{ width: '480px', height: '480px', bottom: '10%', left: '-6%' }}
+      />
+
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         {/* Editorial Layout: Left Narrative + Right Large Visual Demo */}
         <div
           style={{
@@ -74,46 +86,40 @@ export const ClipboardHistorySection: React.FC = () => {
         >
           {/* Left Column: Editorial Storytelling */}
           <div>
-            <span className="section-eyebrow">01 — CLIPBOARD HISTORY</span>
+            <span className="pastry-eyebrow">01 — CLIPBOARD HISTORY</span>
             <h2
+              className="pastry-editorial-heading"
               style={{
-                fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(36px, 5vw, 56px)',
-                fontWeight: 800,
-                lineHeight: 1.05,
-                letterSpacing: '-0.035em',
-                color: '#111111',
                 marginBottom: '20px',
               }}
             >
               Copy once.
               <br />
-              Keep it forever.
+              <span className="pastry-serif-italic">Keep it forever.</span>
             </h2>
             <p
               style={{
-                fontFamily: 'var(--font-body)',
+                fontFamily: 'var(--pastry-font-sans)',
                 fontSize: '17px',
                 lineHeight: 1.6,
-                color: '#636366',
-                marginBottom: '28px',
+                color: 'var(--pastry-ink-secondary)',
+                marginBottom: '24px',
               }}
             >
-              macOS clipboard only remembers one thing at a time. The moment you copy something new, whatever you copied
-              before is gone forever.
+              macOS remembers only your latest copy.
             </p>
             <p
               style={{
-                fontFamily: 'var(--font-body)',
+                fontFamily: 'var(--pastry-font-sans)',
                 fontSize: '17px',
                 lineHeight: 1.6,
-                color: '#636366',
+                color: 'var(--pastry-ink-secondary)',
                 marginBottom: '36px',
               }}
             >
-              Pastry quietly holds onto everything you copy — text, high-res images, files, folders, and apps. When you
-              need an address from an hour ago or an image from yesterday, simply press{' '}
-              <strong style={{ color: '#111111' }}>⌘ + Shift + V</strong> and paste it right where your cursor is.
+              Pastry keeps your text, high-res images, files, folders, and apps ready to restore anytime. Just press{' '}
+              <strong style={{ color: 'var(--pastry-ink)' }}>⌘ + Shift + V </strong>to bring back anything you need, right where you need it.
             </p>
 
             {/* Quick Filter Pills */}
@@ -130,16 +136,7 @@ export const ClipboardHistorySection: React.FC = () => {
                 <button
                   key={tag.id}
                   onClick={() => setFilterTag(tag.id)}
-                  style={{
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    padding: '6px 14px',
-                    borderRadius: '999px',
-                    fontFamily: 'var(--font-display)',
-                    backgroundColor: filterTag === tag.id ? '#111111' : 'rgba(0, 0, 0, 0.04)',
-                    color: filterTag === tag.id ? '#FFFFFF' : '#636366',
-                    transition: 'all 0.15s ease',
-                  }}
+                  className={`pastry-filter-pill ${filterTag === tag.id ? 'is-active' : ''}`}
                 >
                   {tag.label}
                 </button>
@@ -155,19 +152,17 @@ export const ClipboardHistorySection: React.FC = () => {
               position: 'relative',
             }}
           >
-            {/* Ambient Shadow Pod */}
+            {/* Liquid Glass Showcase Panel */}
             <div
+              className="pastry-glass-panel"
               style={{
                 width: '100%',
                 maxWidth: '520px',
-                background: 'linear-gradient(180deg, #F9F9FB 0%, #EFEFF3 100%)',
-                borderRadius: '24px',
-                border: '1px solid rgba(0, 0, 0, 0.08)',
+                borderRadius: '32px',
                 padding: '40px 24px',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                boxShadow: '0 24px 54px -14px rgba(0, 0, 0, 0.08)',
               }}
             >
               <PastryWindowMockup

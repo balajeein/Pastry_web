@@ -6,22 +6,32 @@ export const PrivacySection: React.FC = () => {
       id="privacy"
       style={{
         padding: '120px 0',
-        backgroundColor: '#FFFFFF',
-        borderTop: '1px solid rgba(0, 0, 0, 0.05)',
+        backgroundColor: 'var(--pastry-paper)',
+        borderTop: '1px solid var(--pastry-hairline)',
+        position: 'relative',
+        overflow: 'hidden',
       }}
       aria-label="Privacy"
     >
-      <div className="container-narrow" style={{ textAlign: 'center' }}>
-        <span className="section-eyebrow">07 — PRIVACY BY DESIGN</span>
-        <h2 className="section-title" style={{ marginBottom: '24px' }}>
-          Your clipboard stays yours.
+      {/* Ambient Refractive Blooms */}
+      <div
+        className="pastry-bloom pastry-bloom-meadow"
+        style={{ width: '400px', height: '400px', top: '15%', left: '-5%' }}
+      />
+      <div
+        className="pastry-bloom pastry-bloom-aurora"
+        style={{ width: '440px', height: '440px', bottom: '10%', right: '-5%' }}
+      />
+
+      <div className="container-narrow" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
+        <span className="pastry-eyebrow">07 — PRIVACY BY DESIGN</span>
+        <h2 className="pastry-editorial-heading" style={{ marginBottom: '24px' }}>
+          Your clipboard stays <span className="pastry-serif-italic">yours.</span>
         </h2>
         <p
-          className="section-subtitle"
+          className="pastry-editorial-subheading"
           style={{
             margin: '0 auto 48px',
-            fontSize: '18px',
-            lineHeight: 1.6,
             maxWidth: '620px',
           }}
         >
@@ -31,13 +41,10 @@ export const PrivacySection: React.FC = () => {
 
         {/* Minimal Local Architecture Card (No fake locks, no shields) */}
         <div
+          className="pastry-card"
           style={{
-            background: '#F7F7F9',
-            border: '1px solid rgba(0, 0, 0, 0.08)',
-            borderRadius: '20px',
-            padding: '36px 32px',
+            padding: '40px 36px',
             textAlign: 'left',
-            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.02)',
           }}
         >
           <div

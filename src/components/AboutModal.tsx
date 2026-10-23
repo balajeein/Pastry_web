@@ -17,13 +17,11 @@ export const AboutModal: React.FC<AboutModalProps> = ({
   const [trafficHovered, setTrafficHovered] = useState(false);
 
   useEffect(() => {
-    if (!isOpen) {
-      setIsMaximized(false);
-      return;
-    }
+    if (!isOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        setIsMaximized(false);
         onClose();
       }
     };
@@ -70,12 +68,14 @@ export const AboutModal: React.FC<AboutModalProps> = ({
         style={{
           width: isMaximized ? '98vw' : 'min(940px, 94vw)',
           height: isMaximized ? '96vh' : 'min(700px, 90vh)',
-          backgroundColor: '#FFFFFF',
-          borderRadius: '16px',
-          border: '1px solid rgba(0, 0, 0, 0.12)',
+          backgroundColor: 'rgba(255, 255, 255, 0.88)',
+          backdropFilter: 'blur(36px) saturate(165%)',
+          WebkitBackdropFilter: 'blur(36px) saturate(165%)',
+          borderRadius: '20px',
+          border: '1px solid rgba(255, 255, 255, 0.85)',
           boxShadow: isMaximized
-            ? '0 36px 90px rgba(0, 0, 0, 0.38), 0 0 0 1px rgba(0, 0, 0, 0.1)'
-            : '0 32px 80px -12px rgba(0, 0, 0, 0.25), 0 16px 32px -8px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.08)',
+            ? '0 36px 90px rgba(0, 0, 0, 0.38), 0 0 0 1px rgba(255, 255, 255, 0.5)'
+            : '0 32px 80px -12px rgba(0, 0, 0, 0.25), 0 16px 32px -8px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.6)',
           display: 'flex',
           flexDirection: 'column',
           overflow: 'hidden',
@@ -92,7 +92,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({
             alignItems: 'center',
             justifyContent: 'space-between',
             padding: '0 18px',
-            backgroundColor: '#FFFFFF',
+            backgroundColor: 'rgba(255, 255, 255, 0.65)',
             borderBottom: '1px solid rgba(0, 0, 0, 0.06)',
             userSelect: 'none',
           }}

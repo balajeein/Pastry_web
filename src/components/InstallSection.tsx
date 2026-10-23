@@ -124,47 +124,56 @@ export const InstallSection: React.FC = () => {
       id="install"
       style={{
         padding: '120px 0',
-        backgroundColor: '#FAF9F6',
-        borderTop: '1px solid rgba(0, 0, 0, 0.05)',
+        backgroundColor: 'var(--pastry-paper)',
+        borderTop: '1px solid var(--pastry-hairline)',
+        position: 'relative',
+        overflow: 'hidden',
       }}
       aria-label="Installation Guide"
     >
-      <div className="container">
+      {/* Ambient Refractive Blooms */}
+      <div
+        className="pastry-bloom pastry-bloom-meadow"
+        style={{ width: '450px', height: '450px', top: '15%', right: '-5%' }}
+      />
+      <div
+        className="pastry-bloom pastry-bloom-aurora"
+        style={{ width: '500px', height: '500px', bottom: '15%', left: '-5%' }}
+      />
+
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         {/* Section Header with Catchy Copy */}
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-          <span className="section-eyebrow">SETUP GUIDE</span>
-          <h2 className="section-title">
+          <span className="pastry-eyebrow">SETUP GUIDE</span>
+          <h2 className="pastry-editorial-heading" style={{ marginBottom: '20px' }}>
             7 quick steps.
             <br />
-            Up and running in 60 seconds.
+            <span className="pastry-serif-italic">Up and running in 60 seconds.</span>
           </h2>
 
           {/* Catchy Independent Developer Callout Badge */}
           <div
+            className="pastry-card"
             style={{
               maxWidth: '680px',
               margin: '20px auto 0',
-              background: 'rgba(255, 255, 255, 0.85)',
-              border: '1px solid rgba(0, 0, 0, 0.08)',
-              borderRadius: '16px',
-              padding: '14px 20px',
+              padding: '16px 22px',
               display: 'flex',
               alignItems: 'center',
-              gap: '12px',
+              gap: '14px',
               textAlign: 'left',
-              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)',
             }}
           >
             <div
               style={{
-                width: '32px',
-                height: '32px',
+                width: '34px',
+                height: '34px',
                 borderRadius: '8px',
-                backgroundColor: 'rgba(0, 102, 255, 0.1)',
+                backgroundColor: 'rgba(47, 141, 18, 0.1)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'var(--accent-blue)',
+                color: 'var(--pastry-brand)',
                 flexShrink: 0,
                 fontSize: '16px',
               }}
@@ -173,14 +182,14 @@ export const InstallSection: React.FC = () => {
             </div>
             <p
               style={{
-                fontFamily: 'var(--font-body)',
+                fontFamily: 'var(--pastry-font-sans)',
                 fontSize: '13.5px',
                 lineHeight: 1.5,
-                color: '#444446',
+                color: 'var(--pastry-ink-secondary)',
                 margin: 0,
               }}
             >
-              <strong style={{ color: '#111111' }}>Built by an independent Mac developer:</strong> Because Pastry is
+              <strong style={{ color: 'var(--pastry-ink)' }}>Built by an independent Mac developer:</strong> Because Pastry is
               distributed independently outside the Mac App Store, macOS Gatekeeper requires a one-time approval on
               first launch. Follow this 7-step process to get started smoothly.
             </p>
@@ -202,30 +211,21 @@ export const InstallSection: React.FC = () => {
                 <button
                   key={step.step}
                   onClick={() => setActiveStepIndex(idx)}
+                  className={`pastry-filter-pill ${isActive ? 'is-active' : ''}`}
                   style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '13px',
-                    fontWeight: isActive ? 700 : 500,
-                    backgroundColor: isActive ? '#111111' : '#FFFFFF',
-                    color: isActive ? '#FFFFFF' : '#3A3A3C',
-                    padding: '8px 16px',
-                    borderRadius: '999px',
-                    border: isActive ? '1px solid #111111' : '1px solid rgba(0, 0, 0, 0.08)',
-                    boxShadow: isActive ? '0 4px 12px rgba(0, 0, 0, 0.12)' : '0 2px 4px rgba(0, 0, 0, 0.02)',
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '6px',
-                    transition: 'all 0.15s ease',
-                    cursor: 'pointer',
+                    padding: '8px 16px',
+                    fontSize: '13px',
                   }}
-                  className="step-switcher-pill"
                 >
                   <span
                     style={{
                       fontSize: '11px',
                       fontWeight: 800,
-                      opacity: isActive ? 0.8 : 0.4,
-                      fontFamily: 'var(--font-mono)',
+                      opacity: isActive ? 0.8 : 0.45,
+                      fontFamily: 'var(--pastry-font-mono)',
                     }}
                   >
                     {step.step}
@@ -239,14 +239,11 @@ export const InstallSection: React.FC = () => {
 
         {/* Side-by-Side Showcase Card */}
         <div
+          className="pastry-card"
           style={{
             maxWidth: '1040px',
             margin: '0 auto',
-            background: '#FFFFFF',
-            borderRadius: '24px',
-            border: '1px solid rgba(0, 0, 0, 0.08)',
             padding: '40px',
-            boxShadow: '0 24px 60px -12px rgba(0, 0, 0, 0.08)',
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(min(380px, 100%), 1fr))',
             gap: '48px',
@@ -282,14 +279,14 @@ export const InstallSection: React.FC = () => {
                     currentStep.badgeType === 'required'
                       ? 'rgba(255, 59, 48, 0.1)'
                       : currentStep.badgeType === 'ready'
-                      ? 'rgba(52, 199, 89, 0.12)'
-                      : 'rgba(255, 149, 0, 0.12)',
+                        ? 'rgba(52, 199, 89, 0.12)'
+                        : 'rgba(255, 149, 0, 0.12)',
                   color:
                     currentStep.badgeType === 'required'
                       ? '#FF3B30'
                       : currentStep.badgeType === 'ready'
-                      ? '#34C759'
-                      : '#FF9500',
+                        ? '#34C759'
+                        : '#FF9500',
                 }}
               >
                 {currentStep.badge}

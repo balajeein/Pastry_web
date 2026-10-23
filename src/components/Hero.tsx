@@ -4,9 +4,10 @@ import { CONFIG, LATEST_DOWNLOAD_URL } from '../config';
 
 interface HeroProps {
   onDownloadClick?: () => void;
+  onInstallGuideClick?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onDownloadClick }) => {
+export const Hero: React.FC<HeroProps> = ({ onDownloadClick, onInstallGuideClick }) => {
   const [animStep, setAnimStep] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
@@ -25,12 +26,12 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick }) => {
       const now = new Date();
       setLiveMenuTime(
         now.toLocaleDateString('en-US', { weekday: 'short' }) +
-          ' ' +
-          now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })
+        ' ' +
+        now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })
       );
     };
     updateTime();
-    const timer = setInterval(updateTime, 1000);
+    const timer = setInterval(updateTime, 15000);
     return () => clearInterval(timer);
   }, []);
 
@@ -109,11 +110,10 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick }) => {
 
   const clipboardItems: PastryItem[] = [
     {
-      id: 'item-calc',
-      type: 'equation',
-      title: '249 × 282',
-      result: '70,218',
-      subtitle: 'Calculated Answer',
+      id: 'item-folder',
+      type: 'folder',
+      title: 'Client Proposals & Brand Assets',
+      subtitle: '4m ago • Folder (14 items)',
     },
     {
       id: 'item-script',
@@ -135,10 +135,11 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick }) => {
       imageSrc: '/demo-screenshot.jpg',
     },
     {
-      id: 'item-folder',
-      type: 'folder',
-      title: 'Client Proposals & Brand Assets',
-      subtitle: '4m ago • Folder (14 items)',
+      id: 'item-calc',
+      type: 'equation',
+      title: '249 × 282',
+      result: '70,218',
+      subtitle: 'Calculated Answer',
     },
     {
       id: 'item-app',
@@ -150,90 +151,45 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick }) => {
 
   return (
     <>
-      {/* 1. Hero Text & CTAs Section (Full Viewport Fold) */}
-      <section
-        style={{
-          minHeight: 'calc(100vh - 76px)',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: '40px 0 32px',
-          position: 'relative',
-          overflow: 'hidden',
-          textAlign: 'center',
-        }}
-        aria-label="Pastry Hero"
-      >
-        {/* Subtle Mac Desktop Ambient Glow */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '35%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '750px',
-            height: '420px',
-            background: 'radial-gradient(ellipse at center, rgba(0, 102, 255, 0.08) 0%, rgba(245, 245, 247, 0) 70%)',
-            pointerEvents: 'none',
-            zIndex: 0,
-          }}
-        />
+      {/* 1. Hero Text & CTAs Section (Maya Valley Landscape Fold) */}
+      <section className="pastry-hero-maya-bg" aria-label="Pastry Hero">
+        {/* Panoramic Ghibli-style Landscape Artwork */}
+        <picture className="pastry-hero-landscape-wrap">
+          <source
+            type="image/webp"
+            srcSet="/hero/landscape-1280.webp 1280w, /hero/landscape-1920.webp 1920w"
+            sizes="100vw"
+          />
+          <img
+            src="/hero/landscape-1920.webp"
+            alt="Pastry Landscape Background"
+            width="1920"
+            height="1120"
+            fetchPriority="high"
+            decoding="async"
+            className="pastry-hero-landscape"
+          />
+        </picture>
 
-        <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
-          {/* Eyebrow */}
-          <div style={{ marginBottom: '16px' }}>
-            <span
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '12px',
-                fontWeight: 800,
-                letterSpacing: '0.14em',
-                textTransform: 'uppercase',
-                color: 'var(--accent-blue)',
-                background: 'rgba(0, 102, 255, 0.08)',
-                padding: '6px 14px',
-                borderRadius: '999px',
-                display: 'inline-block',
-              }}
-            >
-              PASTRY FOR MACOS
+        {/* Hero Content Container Over the Sky */}
+        <div className="pastry-hero-content">
+          {/* Eyebrow Seed Badge */}
+          <div style={{ marginBottom: '14px' }}>
+            <span className="pastry-seed-badge-hero">
+              <span className="pastry-seed-tag">v{CONFIG.version}</span>
+              <span>PASTRY FOR macOS</span>
             </span>
           </div>
 
-          {/* Oversized Headline */}
-          <h1
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(44px, 7.8vw, 84px)',
-              fontWeight: 800,
-              lineHeight: 1.02,
-              letterSpacing: '-0.04em',
-              color: '#111111',
-              maxWidth: '920px',
-              margin: '0 auto 24px',
-            }}
-          >
-            Everything you copy.
-            <br />
-            <span style={{ color: '#111111' }}>Always within reach.</span>
+          {/* Oversized Editorial Headline */}
+          <h1 className="pastry-hero-title">
+            Everything{' '}
+            <span className="pastry-serif-italic">within reach.</span>
           </h1>
 
           {/* Supporting Copy */}
-          <p
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 'clamp(17px, 2.3vw, 21px)',
-              fontWeight: 450,
-              lineHeight: 1.5,
-              color: '#636366',
-              letterSpacing: '-0.015em',
-              maxWidth: '680px',
-              margin: '0 auto 36px',
-            }}
-          >
-            Your universal clipboard for Mac. Save text, images, files, folders, apps, calculations, screenshots and more —
-            then bring them back when you need them.
+          <p className="pastry-hero-subtitle">
+            Make your Mac experience effortless.
           </p>
 
           {/* Dual CTAs */}
@@ -244,18 +200,12 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick }) => {
               justifyContent: 'center',
               gap: '14px',
               flexWrap: 'wrap',
-              marginBottom: '28px',
+              marginBottom: '30px',
             }}
           >
             <button
               onClick={handleDownload}
-              className="btn-primary"
-              style={{
-                padding: '16px 36px',
-                fontSize: '16px',
-                fontWeight: 700,
-                borderRadius: '999px',
-              }}
+              className="pastry-btn-hero-primary"
             >
               <svg
                 width="18"
@@ -278,13 +228,7 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick }) => {
               href={CONFIG.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-secondary"
-              style={{
-                padding: '16px 30px',
-                fontSize: '16px',
-                fontWeight: 600,
-                borderRadius: '999px',
-              }}
+              className="pastry-btn-hero-secondary"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
@@ -294,39 +238,28 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick }) => {
           </div>
 
           {/* Global Shortcut Hint */}
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              fontSize: '13px',
-              color: '#8E8E93',
-              fontFamily: 'var(--font-display)',
-              fontWeight: 500,
-            }}
-          >
-            <span>Global shortcut:</span>
-            <span className="mac-keycap" style={{ height: '24px', minWidth: '24px', fontSize: '11px', padding: '0 6px' }}>⌘</span>
-            <span style={{ opacity: 0.5 }}>+</span>
-            <span className="mac-keycap" style={{ height: '24px', minWidth: '24px', fontSize: '11px', padding: '0 6px' }}>⇧</span>
-            <span style={{ opacity: 0.5 }}>+</span>
-            <span className="mac-keycap" style={{ height: '24px', minWidth: '24px', fontSize: '11px', padding: '0 6px' }}>V</span>
-            <span style={{ marginLeft: '6px', color: '#AEAEB2' }}>• Free &amp; Local</span>
-            <span style={{ margin: '0 4px', color: '#AEAEB2' }}>•</span>
+          <div className="pastry-hero-shortcut-hint">
+            <span>Global shortcut: ⌘ + ⇧ + V</span>
+            <span style={{ margin: '0 8px', opacity: 0.5 }}>•</span>
             <a
               href="#install"
               onClick={(e) => {
                 e.preventDefault();
-                const el = document.getElementById('install');
-                if (el) {
-                  const offset = 80;
-                  const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                  window.scrollTo({ top, behavior: 'smooth' });
+                if (onInstallGuideClick) {
+                  onInstallGuideClick();
+                } else {
+                  const el = document.getElementById('install');
+                  if (el) {
+                    const offset = 80;
+                    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                  }
                 }
               }}
               style={{
-                color: 'var(--accent-blue)',
-                textDecoration: 'none',
+                color: '#ffffff',
+                textDecoration: 'underline',
+                textUnderlineOffset: '3px',
                 fontWeight: 600,
                 cursor: 'pointer',
               }}
@@ -340,29 +273,39 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick }) => {
       {/* 2. Clipboard Window Section (Interactive Copy → Paste Demonstration) */}
       <section
         style={{
-          padding: '20px 0 100px 0',
+          padding: '0 0 110px 0',
           position: 'relative',
           overflow: 'hidden',
           display: 'flex',
           justifyContent: 'center',
+          backgroundColor: 'transparent',
+          marginTop: '-250px',
+          zIndex: 10,
         }}
         aria-label="Pastry Clipboard Interface Preview"
       >
-        <div className="container" style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
-          {/* Simulated Native macOS Menu Bar Strip at top of showcase canvas */}
+        {/* Ambient Refractive Blooms behind the glass panel */}
+        <div
+          className="pastry-bloom pastry-bloom-meadow"
+          style={{ width: '460px', height: '460px', top: '12%', left: '-5%' }}
+        />
+        <div
+          className="pastry-bloom pastry-bloom-aurora"
+          style={{ width: '500px', height: '500px', bottom: '8%', right: '-6%' }}
+        />
+
+        <div className="container" style={{ display: 'flex', justifyContent: 'center', position: 'relative', zIndex: 1 }}>
+          {/* Liquid Glass Showcase Card with Maya-Style Specular Border and Blur */}
           <div
+            className="pastry-glass-panel"
             style={{
               position: 'relative',
               width: '100%',
               maxWidth: '920px',
-              background: 'linear-gradient(180deg, rgba(235, 235, 240, 0.6) 0%, rgba(245, 245, 248, 0.4) 100%)',
-              border: '1px solid rgba(0, 0, 0, 0.08)',
-              borderRadius: '24px',
               padding: '36px 20px 48px',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              boxShadow: '0 20px 48px -12px rgba(0, 0, 0, 0.07)',
             }}
           >
             {/* macOS Menu bar snippet */}
@@ -370,21 +313,21 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick }) => {
               style={{
                 width: '100%',
                 maxWidth: '820px',
-                height: '30px',
-                background: 'rgba(255, 255, 255, 0.7)',
+                height: '32px',
+                background: 'rgba(251, 250, 247, 0.85)',
                 backdropFilter: 'blur(20px)',
-                borderRadius: '8px',
-                border: '1px solid rgba(0, 0, 0, 0.06)',
+                borderRadius: '999px',
+                border: '1px solid var(--pastry-hairline)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                padding: '0 12px',
+                padding: '0 14px',
                 marginBottom: '28px',
                 fontSize: '11.5px',
-                color: '#3A3A3C',
+                color: 'var(--pastry-ink-secondary)',
                 fontWeight: 600,
-                fontFamily: 'var(--font-display)',
-                boxShadow: '0 2px 6px rgba(0, 0, 0, 0.02)',
+                fontFamily: 'var(--pastry-font-sans)',
+                boxShadow: 'var(--pastry-shadow-sm)',
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
@@ -399,11 +342,11 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick }) => {
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '4px',
-                    backgroundColor: 'rgba(0, 102, 255, 0.1)',
-                    padding: '2px 6px',
-                    borderRadius: '4px',
-                    color: '#0066FF',
+                    gap: '5px',
+                    backgroundColor: 'rgba(47, 141, 18, 0.1)',
+                    padding: '2.5px 8px',
+                    borderRadius: '999px',
+                    color: 'var(--pastry-brand)',
                   }}
                 >
                   <img src="/pastry-logo.png" alt="Pastry Icon" style={{ width: '13px', height: '13px' }} />

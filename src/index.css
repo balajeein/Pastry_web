@@ -1,39 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import './pastry-theme.css';
 
 :root {
-  --bg-primary: #F7F7F9;
+  --bg-primary: #fbfaf7;
   --bg-surface: #FFFFFF;
-  --bg-surface-elevated: rgba(255, 255, 255, 0.85);
-  --bg-surface-subtle: #F1F1F4;
+  --bg-surface-elevated: rgba(255, 255, 255, 0.88);
+  --bg-surface-subtle: #f4f2ea;
   
-  --text-primary: #121214;
-  --text-secondary: #636366;
-  --text-muted: #8E8E93;
-  --text-tertiary: #AEAEB2;
+  --text-primary: #14180f;
+  --text-secondary: #586050;
+  --text-muted: #858d7c;
+  --text-tertiary: #b2b8ab;
 
-  --accent-blue: #0066FF;
-  --accent-blue-hover: #0052CC;
-  --accent-blue-light: rgba(0, 102, 255, 0.08);
-  --accent-blue-glow: rgba(0, 102, 255, 0.25);
+  --accent-blue: #2f8d12;
+  --accent-blue-hover: #26750f;
+  --accent-blue-light: rgba(47, 141, 18, 0.08);
+  --accent-blue-glow: rgba(47, 141, 18, 0.22);
   
   --apple-green: #34C759;
   --apple-orange: #FF9500;
   --apple-purple: #AF52DE;
   --apple-red: #FF3B30;
 
-  --border-subtle: rgba(0, 0, 0, 0.06);
-  --border-card: rgba(0, 0, 0, 0.08);
-  --border-active: rgba(0, 102, 255, 0.35);
+  --border-subtle: rgba(20, 24, 15, 0.07);
+  --border-card: #e6e4dc;
+  --border-active: rgba(47, 141, 18, 0.35);
 
-  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Rounded", "SF Pro Display", sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 0 1px 1px rgba(0, 0, 0, 0.04);
-  --shadow-card-hover: 0 20px 40px -10px rgba(0, 0, 0, 0.08), 0 0 1px 1px rgba(0, 0, 0, 0.06);
-  --shadow-mac-window: 0 32px 72px -16px rgba(0, 0, 0, 0.16), 0 16px 32px -8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.07);
-  --shadow-floating-panel: 0 28px 64px -12px rgba(0, 0, 0, 0.14), 0 12px 28px -6px rgba(0, 0, 0, 0.07), 0 0 0 1px rgba(255, 255, 255, 0.7);
+  --shadow-sm: 0 2px 8px rgba(20, 24, 15, 0.03);
+  --shadow-card: 0 8px 24px -4px rgba(20, 24, 15, 0.04), 0 1px 2px rgba(20, 24, 15, 0.03);
+  --shadow-card-hover: 0 18px 38px -8px rgba(20, 24, 15, 0.08), 0 2px 4px rgba(20, 24, 15, 0.04);
+  --shadow-mac-window: 0 32px 72px -16px rgba(20, 24, 15, 0.14), 0 16px 32px -8px rgba(20, 24, 15, 0.06), 0 0 0 1px rgba(20, 24, 15, 0.08);
+  --shadow-floating-panel: 0 28px 64px -12px rgba(20, 24, 15, 0.12), 0 12px 28px -6px rgba(20, 24, 15, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.7);
 }
 
 * {

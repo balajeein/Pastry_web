@@ -8,16 +8,28 @@ import { ShortcutsSection } from './components/ShortcutsSection';
 import { BrowserSearchSection } from './components/BrowserSearchSection';
 import { PrivacySection } from './components/PrivacySection';
 import { InstallSection } from './components/InstallSection';
-import { FinalCTASection } from './components/FinalCTASection';
 import { Footer } from './components/Footer';
 import { AboutModal } from './components/AboutModal';
 import { incrementDownloadCount } from './services/counterService';
 
 export function App() {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [showInstallGuide, setShowInstallGuide] = useState(false);
 
   const handleDownloadClick = async () => {
     await incrementDownloadCount();
+  };
+
+  const handleOpenInstallGuide = () => {
+    setShowInstallGuide(true);
+    setTimeout(() => {
+      const el = document.getElementById('install');
+      if (el) {
+        const offset = 80;
+        const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    }, 80);
   };
 
   return (
@@ -30,7 +42,10 @@ export function App() {
 
       <main style={{ flex: 1 }}>
         {/* 2. Hero Section with Real Pastry Window Centerpiece */}
-        <Hero onDownloadClick={handleDownloadClick} />
+        <Hero
+          onDownloadClick={handleDownloadClick}
+          onInstallGuideClick={handleOpenInstallGuide}
+        />
 
         {/* 3. Clipboard History */}
         <ClipboardHistorySection />
@@ -50,15 +65,15 @@ export function App() {
         {/* 9. Privacy (Local-First Architecture) */}
         <PrivacySection />
 
-        {/* 9. How to Install (60-second macOS Guide) */}
-        <InstallSection />
-
-        {/* 10. Final Download CTA */}
-        <FinalCTASection onDownloadClick={handleDownloadClick} />
+        {/* 9. How to Install (60-second macOS Guide) - Appears on demand */}
+        {showInstallGuide && <InstallSection />}
       </main>
 
       {/* 11. Minimal Footer */}
-      <Footer onAboutClick={() => setIsAboutOpen(true)} />
+      <Footer
+        onAboutClick={() => setIsAboutOpen(true)}
+        onInstallGuideClick={handleOpenInstallGuide}
+      />
 
       {/* 12. Floating macOS About Window Modal */}
       <AboutModal

@@ -154,47 +154,55 @@ export const BrowserSearchSection: React.FC = () => {
       id="browser-search"
       style={{
         padding: '120px 0',
-        backgroundColor: '#FFFFFF',
-        borderTop: '1px solid rgba(0, 0, 0, 0.06)',
+        backgroundColor: 'var(--pastry-paper)',
+        borderTop: '1px solid var(--pastry-hairline)',
+        position: 'relative',
+        overflow: 'hidden',
       }}
       aria-label="Browser Search"
     >
-      <div className="container">
+      {/* Ambient Refractive Blooms */}
+      <div
+        className="pastry-bloom pastry-bloom-meadow"
+        style={{ width: '450px', height: '450px', top: '15%', right: '-5%' }}
+      />
+      <div
+        className="pastry-bloom pastry-bloom-aurora"
+        style={{ width: '480px', height: '480px', bottom: '15%', left: '-5%' }}
+      />
+
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-          <span className="section-eyebrow">06 — BROWSER SEARCH</span>
-          <h2 className="section-title">
+          <span className="pastry-eyebrow">06 — BROWSER SEARCH</span>
+          <h2 className="pastry-editorial-heading" style={{ marginBottom: '16px' }}>
             Select anything.
             <br />
-            Search in one keystroke.
+            <span className="pastry-serif-italic">Search in one keystroke.</span>
           </h2>
-          <p className="section-subtitle" style={{ margin: '0 auto 16px', maxWidth: '640px' }}>
-            Highlight any word, phrase, or link anywhere on your Mac and press ⌘ ⇧ B. Pastry passes it directly to
-            your default browser — no opening tabs, no manual copying, no context loss.
+          <p className="pastry-editorial-subheading" style={{ margin: '0 auto 16px', maxWidth: '640px' }}>
+            Highlight any text or link and press ⌘ + ⇧ + B to open it instantly in your default browser.
           </p>
 
           {/* Natural Shortcut Display */}
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-            <span style={{ fontSize: '12px', fontWeight: 600, color: '#8E8E93', marginRight: '4px' }}>Shortcut:</span>
-            <span className="mac-keycap" style={{ height: '24px', minWidth: '24px', fontSize: '11px', padding: '0 6px' }}>⌘</span>
-            <span className="mac-keycap" style={{ height: '24px', minWidth: '24px', fontSize: '11px', padding: '0 6px' }}>⇧</span>
-            <span className="mac-keycap" style={{ height: '24px', minWidth: '24px', fontSize: '11px', padding: '0 6px' }}>B</span>
+            <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--pastry-ink-muted)', marginRight: '4px' }}>Shortcut:</span>
+            <span className="pastry-keycap" style={{ height: '24px', minWidth: '24px', fontSize: '11px', padding: '0 6px' }}>⌘</span>
+            <span className="pastry-keycap" style={{ height: '24px', minWidth: '24px', fontSize: '11px', padding: '0 6px' }}>⇧</span>
+            <span className="pastry-keycap" style={{ height: '24px', minWidth: '24px', fontSize: '11px', padding: '0 6px' }}>B</span>
           </div>
         </div>
 
         {/* 3-Step Story Banner: SELECT TEXT → ⌘ ⇧ B → DEFAULT BROWSER SEARCH */}
         <div
+          className="pastry-card"
           style={{
             maxWidth: '820px',
             margin: '0 auto 40px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            background: 'rgba(250, 249, 246, 0.85)',
-            border: '1px solid rgba(0, 0, 0, 0.08)',
-            borderRadius: '16px',
             padding: '16px 28px',
-            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.02)',
             flexWrap: 'wrap',
             gap: '16px',
           }}
@@ -206,8 +214,8 @@ export const BrowserSearchSection: React.FC = () => {
                 width: '24px',
                 height: '24px',
                 borderRadius: '50%',
-                background: activeStepNum === 1 ? '#111111' : '#E5E5EA',
-                color: activeStepNum === 1 ? '#FFFFFF' : '#8E8E93',
+                background: activeStepNum === 1 ? 'var(--pastry-ink)' : 'var(--pastry-paper-muted)',
+                color: activeStepNum === 1 ? '#FFFFFF' : 'var(--pastry-ink-muted)',
                 fontSize: '11px',
                 fontWeight: 700,
                 display: 'flex',
@@ -219,14 +227,14 @@ export const BrowserSearchSection: React.FC = () => {
               1
             </span>
             <div>
-              <div style={{ fontSize: '11px', fontWeight: 700, color: '#8E8E93', textTransform: 'uppercase' }}>
+              <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--pastry-ink-muted)', textTransform: 'uppercase' }}>
                 Step 1
               </div>
-              <div style={{ fontSize: '14px', fontWeight: 700, color: '#111111' }}>Select Text</div>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--pastry-ink)' }}>Select Text</div>
             </div>
           </div>
 
-          <span style={{ color: '#C7C7CC', fontSize: '18px' }}>→</span>
+          <span style={{ color: 'var(--pastry-ink-muted)', fontSize: '18px' }}>→</span>
 
           {/* Step 2 */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -235,8 +243,8 @@ export const BrowserSearchSection: React.FC = () => {
                 width: '24px',
                 height: '24px',
                 borderRadius: '50%',
-                background: activeStepNum === 2 ? '#0066FF' : '#E5E5EA',
-                color: activeStepNum === 2 ? '#FFFFFF' : '#8E8E93',
+                background: activeStepNum === 2 ? 'var(--pastry-brand)' : 'var(--pastry-paper-muted)',
+                color: activeStepNum === 2 ? '#FFFFFF' : 'var(--pastry-ink-muted)',
                 fontSize: '11px',
                 fontWeight: 700,
                 display: 'flex',
@@ -248,18 +256,18 @@ export const BrowserSearchSection: React.FC = () => {
               2
             </span>
             <div>
-              <div style={{ fontSize: '11px', fontWeight: 700, color: '#8E8E93', textTransform: 'uppercase' }}>
+              <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--pastry-ink-muted)', textTransform: 'uppercase' }}>
                 Step 2
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                <span className={`mac-keycap ${isKeyPressed ? 'pressed' : ''}`} style={{ height: '22px', minWidth: '22px', fontSize: '10px', padding: '0 5px' }}>⌘</span>
-                <span className={`mac-keycap ${isKeyPressed ? 'pressed' : ''}`} style={{ height: '22px', minWidth: '22px', fontSize: '10px', padding: '0 5px' }}>⇧</span>
-                <span className={`mac-keycap ${isKeyPressed ? 'pressed' : ''}`} style={{ height: '22px', minWidth: '22px', fontSize: '10px', padding: '0 5px' }}>B</span>
+                <span className={`pastry-keycap ${isKeyPressed ? 'is-pressed' : ''}`} style={{ height: '22px', minWidth: '22px', fontSize: '10px', padding: '0 5px' }}>⌘</span>
+                <span className={`pastry-keycap ${isKeyPressed ? 'is-pressed' : ''}`} style={{ height: '22px', minWidth: '22px', fontSize: '10px', padding: '0 5px' }}>⇧</span>
+                <span className={`pastry-keycap ${isKeyPressed ? 'is-pressed' : ''}`} style={{ height: '22px', minWidth: '22px', fontSize: '10px', padding: '0 5px' }}>B</span>
               </div>
             </div>
           </div>
 
-          <span style={{ color: '#C7C7CC', fontSize: '18px' }}>→</span>
+          <span style={{ color: 'var(--pastry-ink-muted)', fontSize: '18px' }}>→</span>
 
           {/* Step 3 */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -268,8 +276,8 @@ export const BrowserSearchSection: React.FC = () => {
                 width: '24px',
                 height: '24px',
                 borderRadius: '50%',
-                background: activeStepNum === 3 ? '#34C759' : '#E5E5EA',
-                color: activeStepNum === 3 ? '#FFFFFF' : '#8E8E93',
+                background: activeStepNum === 3 ? 'var(--pastry-brand)' : 'var(--pastry-paper-muted)',
+                color: activeStepNum === 3 ? '#FFFFFF' : 'var(--pastry-ink-muted)',
                 fontSize: '11px',
                 fontWeight: 700,
                 display: 'flex',
@@ -281,24 +289,23 @@ export const BrowserSearchSection: React.FC = () => {
               3
             </span>
             <div>
-              <div style={{ fontSize: '11px', fontWeight: 700, color: '#8E8E93', textTransform: 'uppercase' }}>
+              <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--pastry-ink-muted)', textTransform: 'uppercase' }}>
                 Step 3
               </div>
-              <div style={{ fontSize: '14px', fontWeight: 700, color: '#111111' }}>Default Browser Searches</div>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--pastry-ink)' }}>Default Browser Searches</div>
             </div>
           </div>
         </div>
 
         {/* Large Visual Showcase Canvas */}
         <div
+          className="pastry-card"
           style={{
             maxWidth: '860px',
             margin: '0 auto',
-            background: 'linear-gradient(180deg, #F8F8FA 0%, #EAEAEF 100%)',
-            borderRadius: '24px',
-            border: '1px solid rgba(0, 0, 0, 0.08)',
+            background: 'rgba(255, 255, 255, 0.9)',
+            backdropFilter: 'blur(20px)',
             padding: '36px 24px 44px',
-            boxShadow: '0 24px 64px -16px rgba(0, 0, 0, 0.1)',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',

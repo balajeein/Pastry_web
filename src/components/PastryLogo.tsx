@@ -2,12 +2,14 @@ interface PastryLogoProps {
   size?: number;
   showText?: boolean;
   className?: string;
+  textColor?: string;
 }
 
 export const PastryLogo: React.FC<PastryLogoProps> = ({ 
   size = 32, 
   showText = true,
-  className = ''
+  className = '',
+  textColor
 }) => {
   return (
     <div className={`inline-flex items-center gap-3 ${className}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '12px' }}>
@@ -31,7 +33,7 @@ export const PastryLogo: React.FC<PastryLogoProps> = ({
             fontWeight: 800, 
             fontSize: '18px', 
             letterSpacing: '0.08em', 
-            color: '#111111',
+            color: textColor || '#111111',
             textTransform: 'uppercase',
             fontFamily: 'Inter, sans-serif'
           }}

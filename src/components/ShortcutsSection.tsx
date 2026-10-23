@@ -58,218 +58,267 @@ export const ShortcutsSection: React.FC = () => {
       id="shortcuts"
       style={{
         padding: '120px 0',
-        backgroundColor: '#FAF9F6',
-        borderTop: '1px solid rgba(0, 0, 0, 0.06)',
+        backgroundColor: 'var(--pastry-paper)',
+        borderTop: '1px solid var(--pastry-hairline)',
+        position: 'relative',
+        overflow: 'hidden',
       }}
       aria-label="Text and Image Shortcuts"
     >
-      <div className="container">
-        {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-          <span className="section-eyebrow">04 &amp; 05 — TEXT &amp; IMAGE SHORTCUTS</span>
-          <h2 className="section-title">
-            Type less.
-            <br />
-            Do more.
-          </h2>
-          <p className="section-subtitle" style={{ margin: '0 auto' }}>
-            Turn frequently typed phrases, signatures, addresses, and images into instant native shortcuts. Type your
-            keyword anywhere on macOS and press <strong style={{ color: '#111' }}>⌥ + Space</strong> to expand.
-          </p>
+      {/* Ambient Refractive Blooms */}
+      <div
+        className="pastry-bloom pastry-bloom-meadow"
+        style={{ width: '420px', height: '420px', top: '20%', left: '-5%' }}
+      />
+      <div
+        className="pastry-bloom pastry-bloom-aurora"
+        style={{ width: '460px', height: '460px', bottom: '15%', right: '-5%' }}
+      />
 
-          {/* Preset Buttons */}
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              gap: '10px',
-              marginTop: '32px',
-              flexWrap: 'wrap',
-            }}
-          >
-            {SHORTCUTS.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => handleSimulate(s)}
-                style={{
-                  padding: '10px 22px',
-                  borderRadius: '999px',
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '14px',
-                  fontWeight: activeShortcut.id === s.id ? 700 : 500,
-                  backgroundColor: activeShortcut.id === s.id ? '#111111' : '#FFFFFF',
-                  color: activeShortcut.id === s.id ? '#FFFFFF' : '#3A3A3C',
-                  border: activeShortcut.id === s.id ? '1px solid #111111' : '1px solid rgba(0, 0, 0, 0.1)',
-                  boxShadow: activeShortcut.id === s.id ? '0 4px 14px rgba(0, 0, 0, 0.12)' : '0 2px 4px rgba(0, 0, 0, 0.02)',
-                  transition: 'all 0.15s ease',
-                  cursor: 'pointer',
-                }}
-              >
-                <span>{s.label}</span>
-                <span style={{ opacity: 0.6, marginLeft: '6px', fontFamily: 'var(--font-mono)' }}>({s.trigger})</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Tactile Keyboard Keypress Demonstration */}
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        {/* Editorial Layout: Left Narrative + Right Large Visual Demo */}
         <div
           style={{
-            maxWidth: '480px',
-            margin: '0 auto 36px',
-            display: 'flex',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(380px, 100%), 1fr))',
+            gap: '64px',
             alignItems: 'center',
-            justifyContent: 'center',
-            gap: '12px',
-            background: 'rgba(255, 255, 255, 0.75)',
-            border: '1px solid rgba(0, 0, 0, 0.08)',
-            padding: '12px 24px',
-            borderRadius: '16px',
           }}
         >
-          <span style={{ fontSize: '13px', fontWeight: 600, color: '#636366' }}>Expansion Hotkey:</span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span
-              className={`mac-keycap ${isKeyActive ? 'pressed' : ''}`}
+          {/* Left Column: Editorial Storytelling */}
+          <div>
+            <span className="pastry-eyebrow">04 &amp; 05 — TEXT &amp; IMAGE SHORTCUTS</span>
+            <h2
+              className="pastry-editorial-heading"
               style={{
-                minWidth: '46px',
-                height: '38px',
-                fontSize: '15px',
-                borderRadius: '8px',
+                fontSize: 'clamp(36px, 5vw, 56px)',
+                marginBottom: '20px',
               }}
             >
-              ⌥
-            </span>
-            <span style={{ color: '#8E8E93', fontWeight: 600 }}>+</span>
-            <span
-              className={`mac-keycap ${isKeyActive ? 'pressed' : ''}`}
+              Type less.
+              <br />
+              <span className="pastry-serif-italic">Do more.</span>
+            </h2>
+            <p
               style={{
-                minWidth: '110px',
-                height: '38px',
-                fontSize: '12px',
-                borderRadius: '8px',
-                letterSpacing: '0.04em',
+                fontFamily: 'var(--pastry-font-sans)',
+                fontSize: '17px',
+                lineHeight: 1.6,
+                color: 'var(--pastry-ink-secondary)',
+                marginBottom: '28px',
               }}
             >
-              SPACE
-            </span>
-          </div>
-        </div>
+              Turn phrases, signatures, addresses, and images into instant shortcuts.
+              <br />
+              Type your keyword and press <strong style={{ color: 'var(--pastry-ink)' }}>⌥ + Space</strong> to expand anywhere on macOS.
+            </p>
 
-        {/* Realistic Native macOS Messages / Editor Window */}
-        <div
-          style={{
-            maxWidth: '740px',
-            margin: '0 auto',
-            background: '#FFFFFF',
-            borderRadius: '20px',
-            border: '1px solid rgba(0, 0, 0, 0.1)',
-            boxShadow: '0 24px 60px -12px rgba(0, 0, 0, 0.12)',
-            overflow: 'hidden',
-          }}
-        >
-          {/* macOS Title Bar */}
-          <div
-            style={{
-              padding: '12px 18px',
-              background: '#F8F8FA',
-              borderBottom: '1px solid rgba(0, 0, 0, 0.07)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span className="traffic-light close" />
-              <span className="traffic-light minimize" />
-              <span className="traffic-light maximize" />
-              <span style={{ fontSize: '12px', fontWeight: 600, color: '#636366', marginLeft: '8px' }}>
-                Messages — Chat with Sarah
-              </span>
+            {/* Preset Buttons */}
+            <div
+              style={{
+                display: 'flex',
+                gap: '8px',
+                flexWrap: 'wrap',
+              }}
+            >
+              {SHORTCUTS.map((s) => (
+                <button
+                  key={s.id}
+                  onClick={() => handleSimulate(s)}
+                  className={`pastry-filter-pill ${activeShortcut.id === s.id ? 'is-active' : ''}`}
+                  style={{
+                    padding: '9px 18px',
+                  }}
+                >
+                  <span>{s.label}</span>
+                  <span style={{ opacity: 0.65, marginLeft: '6px', fontFamily: 'var(--pastry-font-mono)', fontSize: '12px' }}>({s.trigger})</span>
+                </button>
+              ))}
             </div>
-            <span style={{ fontSize: '11px', color: '#8E8E93', fontFamily: 'var(--font-mono)' }}>⌥ + Space</span>
           </div>
 
-          {/* Chat Messages Body */}
+          {/* Right Column: Visual Demonstration */}
           <div
             style={{
-              padding: '32px 28px',
-              minHeight: '260px',
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'space-between',
-              backgroundColor: '#FFFFFF',
+              alignItems: 'center',
+              gap: '20px',
+              position: 'relative',
+              width: '100%',
             }}
           >
-            {/* Incoming Message */}
-            <div style={{ display: 'flex', gap: '12px', marginBottom: '24px' }}>
-              <div
-                style={{
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '50%',
-                  background: '#E5E5EA',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '12px',
-                  fontWeight: 700,
-                  color: '#636366',
-                  flexShrink: 0,
-                }}
-              >
-                ST
-              </div>
-              <div
-                style={{
-                  background: '#E9E9EB',
-                  color: '#000000',
-                  padding: '12px 18px',
-                  borderRadius: '18px 18px 18px 4px',
-                  fontSize: '14px',
-                  lineHeight: 1.45,
-                  maxWidth: '420px',
-                }}
-              >
-                Hey! Could you send over your {activeShortcut.label.toLowerCase()} quickly?
+            {/* Tactile Keyboard Keypress Demonstration */}
+            <div
+              className="pastry-card"
+              style={{
+                width: '100%',
+                maxWidth: '560px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '12px',
+                padding: '12px 24px',
+              }}
+            >
+              <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--pastry-ink-secondary)' }}>Expansion Hotkey:</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span
+                  className={`pastry-keycap ${isKeyActive ? 'is-pressed' : ''}`}
+                  style={{
+                    minWidth: '42px',
+                    height: '34px',
+                    fontSize: '14px',
+                    borderRadius: '8px',
+                  }}
+                >
+                  ⌥
+                </span>
+                <span style={{ color: 'var(--pastry-ink-muted)', fontWeight: 600 }}>+</span>
+                <span
+                  className={`pastry-keycap ${isKeyActive ? 'is-pressed' : ''}`}
+                  style={{
+                    minWidth: '96px',
+                    height: '34px',
+                    fontSize: '11.5px',
+                    borderRadius: '8px',
+                    letterSpacing: '0.04em',
+                  }}
+                >
+                  SPACE
+                </span>
               </div>
             </div>
 
-            {/* Outgoing Message Expansion */}
-            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 'auto' }}>
+            {/* Liquid Glass Showcase Panel */}
+            <div
+              className="pastry-glass-panel"
+              style={{
+                width: '100%',
+                maxWidth: '560px',
+                borderRadius: '32px',
+                padding: '24px',
+                display: 'flex',
+                flexDirection: 'column',
+                position: 'relative',
+              }}
+            >
+              {/* Realistic Native macOS Messages / Editor Window */}
               <div
                 style={{
-                  background: '#0066FF',
-                  color: '#FFFFFF',
-                  padding: '14px 20px',
-                  borderRadius: '18px 18px 4px 18px',
-                  fontSize: '14px',
-                  lineHeight: 1.5,
-                  maxWidth: '460px',
-                  transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
-                  boxShadow: '0 4px 12px rgba(0, 102, 255, 0.2)',
+                  width: '100%',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  border: '1px solid rgba(0, 0, 0, 0.08)',
+                  boxShadow: '0 16px 40px rgba(0, 0, 0, 0.08)',
+                  background: '#FFFFFF',
                 }}
               >
-                {!isExpanded ? (
+                {/* macOS Title Bar */}
+                <div
+                  style={{
+                    padding: '12px 18px',
+                    background: '#F8F8FA',
+                    borderBottom: '1px solid rgba(0, 0, 0, 0.07)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 700 }}>{activeShortcut.trigger}</span>
-                    <span style={{ opacity: 0.6, fontSize: '11px' }}>[press ⌥ + Space to expand]</span>
+                    <span className="traffic-light close" />
+                    <span className="traffic-light minimize" />
+                    <span className="traffic-light maximize" />
+                    <span style={{ fontSize: '12px', fontWeight: 600, color: '#636366', marginLeft: '8px' }}>
+                      Messages — Chat with Sarah
+                    </span>
                   </div>
-                ) : activeShortcut.type === 'text' ? (
-                  <div style={{ whiteSpace: 'pre-line' }}>{activeShortcut.expandedText}</div>
-                ) : (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <img
-                      src={activeShortcut.expandedImage}
-                      alt="Expanded Shortcut Asset"
-                      style={{ width: '48px', height: '48px', objectFit: 'contain' }}
-                    />
-                    <div>
-                      <div style={{ fontWeight: 700 }}>Pastry Logo.png</div>
-                      <div style={{ fontSize: '11px', opacity: 0.8 }}>Saved Brand Image Asset • 1024 × 1024</div>
+                  <span style={{ fontSize: '11px', color: '#8E8E93', fontFamily: 'var(--font-mono)' }}>⌥ + Space</span>
+                </div>
+
+                {/* Chat Messages Body */}
+                <div
+                  style={{
+                    padding: '28px 24px',
+                    minHeight: '260px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    backgroundColor: '#FFFFFF',
+                  }}
+                >
+                  {/* Incoming Message */}
+                  <div style={{ display: 'flex', gap: '12px', marginBottom: '24px' }}>
+                    <div
+                      style={{
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '50%',
+                        background: '#E5E5EA',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '12px',
+                        fontWeight: 700,
+                        color: '#636366',
+                        flexShrink: 0,
+                      }}
+                    >
+                      ST
+                    </div>
+                    <div
+                      style={{
+                        background: '#E9E9EB',
+                        color: '#000000',
+                        padding: '12px 18px',
+                        borderRadius: '18px 18px 18px 4px',
+                        fontSize: '14px',
+                        lineHeight: 1.45,
+                        maxWidth: '420px',
+                      }}
+                    >
+                      Hey! Could you send over your {activeShortcut.label.toLowerCase()} quickly?
                     </div>
                   </div>
-                )}
+
+                  {/* Outgoing Message Expansion */}
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 'auto' }}>
+                    <div
+                      style={{
+                        background: '#0066FF',
+                        color: '#FFFFFF',
+                        padding: '14px 20px',
+                        borderRadius: '18px 18px 4px 18px',
+                        fontSize: '14px',
+                        lineHeight: 1.5,
+                        maxWidth: '460px',
+                        transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                        boxShadow: '0 4px 12px rgba(0, 102, 255, 0.2)',
+                      }}
+                    >
+                      {!isExpanded ? (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 700 }}>{activeShortcut.trigger}</span>
+                          <span style={{ opacity: 0.6, fontSize: '11px' }}>[press ⌥ + Space to expand]</span>
+                        </div>
+                      ) : activeShortcut.type === 'text' ? (
+                        <div style={{ whiteSpace: 'pre-line' }}>{activeShortcut.expandedText}</div>
+                      ) : (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                          <img
+                            src={activeShortcut.expandedImage}
+                            alt="Expanded Shortcut Asset"
+                            style={{ width: '48px', height: '48px', objectFit: 'contain' }}
+                          />
+                          <div>
+                            <div style={{ fontWeight: 700 }}>Pastry Logo.png</div>
+                            <div style={{ fontSize: '11px', opacity: 0.8 }}>Saved Brand Image Asset • 1024 × 1024</div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
